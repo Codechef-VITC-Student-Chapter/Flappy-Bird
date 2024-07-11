@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../assets/homePage_gameName.png'
 import button from '../assets/homePage_startButton.png'
 
+
 const HomePage = () => {
     const [screen, setScreen] = useState('home');
 
@@ -29,6 +30,6 @@ const HomePage = () => {
             <p className='text-white text-2xl font-thin'>Click / Press The Space Bar to Start</p>
     </div>
   )
-}
+
 
 export default HomePage
