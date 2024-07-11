@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../assets/certificate_codecheflogo.png';
+import "./CSSFiles/Certificate.css";
 
 const Certificate = ({ setScreen, playerName, bestScore }) => {
   const handleClose = () => {
