@@ -3,9 +3,7 @@ import logo from '../assets/homePage_gameName.png'
 import button from '../assets/homePage_startButton.png'
 
 
-const HomePage = () => {
-    const [screen, setScreen] = useState('home');
-
+const HomePage = ( {setScreen} ) => {
     const handleScreen = (event) => {
         if (event.code === 'Space') {
             setScreen('play');
