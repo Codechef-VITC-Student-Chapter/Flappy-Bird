@@ -3,7 +3,7 @@ function HomePage({setScreen}){
     return(
     <>
         <h1>Home Page</h1>
-        <button onClick={() => setScreen("play")}>Game Over</button>
+        <button onClick={() => setScreen("gameover")}>Game Over</button>
     </>);
 }
 export default HomePage
