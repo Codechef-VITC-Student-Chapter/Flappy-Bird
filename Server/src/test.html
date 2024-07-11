@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+        button{
+            color: white;
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-size: 20px;
+            margin: 10px;
+        }
+        button:hover{
+            color:black;
+            background-color: white;
+        }
+        input{
+            color:white;
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 30px;
+        }
+        #userList {
+            margin-top: 20px;
+            color: white;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 10px;
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Test Page</h1>
+    
+    <h2>Create a New Game User</h2>
+    <form class="box" id="createUserForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required><br>
+        </div>
+        <div>
+            <label for="score">Score:</label>
+            <input type="number" id="score" required><br>
+        </div>
+        <div>
+            <label for="rank">Rank:</label>
+            <input type="number" id="rank" required><br>
+        </div>
+        <button type="submit">Create Game User</button>
+    </form>
+    
+    <h2>Remove a Game User</h2>
+    <form class="box" id="removeUserForm">
+        <div>
+            <label for="removeUsername">Username:</label>
+            <input type="text" id="removeUsername" required><br>
+        </div>
+        <button type="submit">Remove Game User</button>
+    </form>
+    
+    <h2>Get All Game Users</h2>
+    <button id="getUsersButton">Get Game Users</button>
+    
+    <div id="userList"></div>
+    
+    <script>
+        document.getElementById('createUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const score = document.getElementById('score').value;
+            const rank = document.getElementById('rank').value;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/gameusers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, score, rank })
+                });
+                const data = await response.json();
+                alert(data.message || 'Game user created successfully');
+            } catch (error) {
+                console.error('Error creating game user:', error);
+                alert('Error creating game user');
+            }
+        });
+
+        document.getElementById('removeUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('removeUsername').value;
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/gameusers/${username}`, {
+                    method: 'DELETE',
+                });
+                const data = await response.json();
+                alert(data.message || 'Game user removed successfully');
+            } catch (error) {
+                console.error('Error removing game user:', error);
+                alert('Error removing game user');
+            }
+        });
+
+        document.getElementById('getUsersButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/gameusers');
+                const gameUsers = await response.json();
+                
+                const userListDiv = document.getElementById('userList');
+                userListDiv.innerHTML = '<h3>Game Users:</h3>';
+                
+                if (gameUsers.length === 0) {
+                    userListDiv.innerHTML += '<p>No game users found.</p>';
+                } else {
+                    gameUsers.forEach(user => {
+                        userListDiv.innerHTML += `<p>Username: ${user.username}, Score: ${user.score}, Rank: ${user.rank}</p>`;
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching game users:', error);
+                alert('Error fetching game users');
+            }
+        });
+    </script>
+</body>
+</html>
