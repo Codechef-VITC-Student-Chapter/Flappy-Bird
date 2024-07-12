@@ -1,7 +1,14 @@
 
-//Send and Recieve the respective props from the playScreen
-//Discuss with respective Person
-function Bird({yPosition}){
-    return(<h1>Bird</h1>)
-}
+const Bird = (props) => {
+    return (
+      <div
+        className={"absolute w-[48px] h-[53px] bg-cover bg-center animation "+`${props.gameOver ? "bg-flappybirdbigeye":"bg-flappybird"}`}
+        style={{
+          left: props.window_width * 0.2,
+          top: props.bird_top,
+          //border:"2px solid black",
+        }}
+      ></div>
+    );
+};
 export default Bird
