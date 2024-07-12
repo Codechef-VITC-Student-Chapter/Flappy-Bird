@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Post No Bills Colombo';
+    src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+.font-postNoBills {
+    font-family: 'Post No Bills Colombo', sans-serif;
+    font-weight: 800;
+  }
+
+  .font-inter{
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+  }
