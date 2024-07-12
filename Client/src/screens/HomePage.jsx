@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import logo from '../assets/homePage_gameName.png'
 import button from '../assets/homePage_startButton.png'
 
-
 const HomePage = ( {setScreen} ) => {
     const handleScreen = (event) => {
         if (event.code === 'Space') {
@@ -27,7 +26,7 @@ const HomePage = ( {setScreen} ) => {
             <img src={button} alt="button" className='w-2/5 md:w-1/4 cursor-pointer pb-20' onClick={handleClick} />
             <p className='text-white text-2xl font-thin'>Click / Press The Space Bar to Start</p>
     </div>
-  )
-
+  );
+}
 
 export default HomePage
