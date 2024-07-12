@@ -13,7 +13,7 @@ const LeaderBoard = ({ setScreen ,players }) => {
       <div className="body hidden lg:flex w-screen items-center flex-col p-6 rounded-3xl shadow-lg out mx-5 h-screen big">
         <div className="flex items-center t1" style={{marginTop: '-30px', marginLeft: '25px'}}>
           <img src={bird} alt="CodeChef Bird" className="mx-10" style={{ width: '120px', height: '120px' }}/>
-          <h2 className="ont-posttext-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16 font-postNoBills" style={{ backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
+          <h2 className="text-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16 font-postNoBills" style={{ backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
             LEADERBOARD
           </h2>
           <img
