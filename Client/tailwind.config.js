@@ -1,10 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "flappybird-desk": "url('./assets/homePage_desktopBg.png')",
+        "flappybird-mob": "url('./assets/homePage_mobileBg.png')",
+        "deskview": "url('./assets/certificate_gamebg.png')",
+        "phoneview": "url('./assets/certificate_phonebgg.png')",
+      },
+      screens: {
+        '927px': '927px',
+        '741px':'741px',
+      },
       borderRadius: {
         'custom': '50px',
         'custom-tl': '15px',
@@ -48,10 +59,8 @@ module.exports = {
         'custom-spacing': '1px',
 
       },
-
       height: {
         '95px': '95px',
-      },
     },
   },
   plugins: [],
