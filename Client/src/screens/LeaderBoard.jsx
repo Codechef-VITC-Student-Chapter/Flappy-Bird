@@ -5,7 +5,7 @@ import crownGold from "../assets/leaderBoard_crown_r1.png";
 import crownSilver from "../assets/leaderBoard_crown_r2.png";
 import crownBronze from "../assets/leaderBoard_crown_r3.png";
 
-const LeaderBoard = ({ players }) => {
+const LeaderBoard = ({ setScreen ,players }) => {
   return (
     <>
     <div className="body">
@@ -13,7 +13,7 @@ const LeaderBoard = ({ players }) => {
       <div className="body hidden lg:flex w-screen items-center flex-col p-6 rounded-3xl shadow-lg out mx-5 h-screen big">
         <div className="flex items-center t1" style={{marginTop: '-30px', marginLeft: '25px'}}>
           <img src={bird} alt="CodeChef Bird" className="mx-10" style={{ width: '120px', height: '120px' }}/>
-          <h2 className="text-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16" style={{ fontFamily: "'Post No Bills Jaffna', sans-serif", backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
+          <h2 className="ont-posttext-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16 font-postNoBills" style={{ backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
             LEADERBOARD
           </h2>
           <img
@@ -73,6 +73,12 @@ const LeaderBoard = ({ players }) => {
             ))}
           </div>
         </ul>
+        <button
+          onClick={()=>setScreen("gameover")}
+          className="font-postNoBills bg-[#DCC131] text-black px-12 py-2 text-3xl rounded shadow hover:bg-green-700 transition duration-300 mt-10 text-2xl sm:text-5xl rounded-full"
+        >
+          Close
+        </button>
       </div>
 
       {/* Div for smaller screens */}
@@ -80,7 +86,7 @@ const LeaderBoard = ({ players }) => {
         {/* Mobile version content */}
         <div className="flex items-center mt-0" style={{marginTop:'-8px'}}>  
         <img src={bird} alt="CodeChef Bird" className="mx-1 bird-sm"/>
-            <h2 className="font-bold p-3 text-center lead rounded-custom tracking-wider mt-0 leaderboard-title" style={{ fontFamily: "'Post No Bills Jaffna', sans-serif", backgroundColor: '#DCC131', padding: '2px 10px' }}>
+            <h2 className="font-bold p-3 text-center lead rounded-custom tracking-wider mt-0 leaderboard-title font-postNoBills" style={{backgroundColor: '#DCC131', padding: '2px 10px' }}>
                 LEADERBOARD
             </h2>
             <img src={bird} alt="CodeChef Bird" className="transform scale-x-[-1] mx-1 bird-sm"/>
@@ -134,6 +140,10 @@ const LeaderBoard = ({ players }) => {
             ))}
           </div>
         </ul>
+        <button
+          onClick={()=>setScreen("gameover")}
+          className="font-postNoBills bg-[#DCC131] text-black px-12 py-2 text-3xl rounded shadow hover:bg-green-700 transition duration-300 mt-10 text-2xl sm:text-5xl rounded-full"
+        >Close</button>
       </div>
     </div>
     </>
