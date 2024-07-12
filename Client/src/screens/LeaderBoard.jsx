@@ -1,17 +1,17 @@
 import React from "react";
-import "./CSSFiles/Leaderboard.css"; // Keep this for remaining custom styles
+import "./CSSFiles/Leaderboard.css";
 import bird from "../assets/leaderBoard_bird.png";
 import crownGold from "../assets/leaderBoard_crown_r1.png";
 import crownSilver from "../assets/leaderBoard_crown_r2.png";
 import crownBronze from "../assets/leaderBoard_crown_r3.png";
 
-const LeaderBoard = ({ setScreen ,players }) => {
+const LeaderBoard = ({ setScreen, players }) => {
   return (
     <>
-    <div className="body">
-              {/* Div for larger screens */}
-      <div className="body hidden lg:flex w-screen items-center flex-col p-6 rounded-3xl shadow-lg out mx-5 h-screen big">
-        <div className="flex items-center t1" style={{marginTop: '-30px', marginLeft: '25px'}}>
+    <div className="body lg:bg-[100%_100%] flex justify-center items-center">
+      {/* Div for larger screens */}
+      <div className="body hidden lg:flex w-screen max-w-[1200px] items-center flex-col p-6 rounded-3xl shadow-lg out mx-auto h-screen big">
+        <div className="flex items-center t1" style={{marginTop: '-30px'}}>
           <img src={bird} alt="CodeChef Bird" className="mx-10" style={{ width: '120px', height: '120px' }}/>
           <h2 className="text-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16 font-postNoBills" style={{ backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
             LEADERBOARD
@@ -82,14 +82,14 @@ const LeaderBoard = ({ setScreen ,players }) => {
       </div>
 
       {/* Div for smaller screens */}
-      <div className="flex lg:hidden w-screen items-center flex-col p-6 rounded-3xl shadow-lg out mx-5 h-screen">
+      <div className="flex lg:hidden w-screen max-w-[600px] items-center flex-col p-6 rounded-3xl shadow-lg out mx-auto h-screen bg-[calc(100%-1px)_calc(100%-1px)] bg-center bg-origin-content-box m-0 p-5">
         {/* Mobile version content */}
         <div className="flex items-center mt-0" style={{marginTop:'-8px'}}>  
-        <img src={bird} alt="CodeChef Bird" className="mx-1 bird-sm"/>
-            <h2 className="font-bold p-3 text-center lead rounded-custom tracking-wider mt-0 leaderboard-title font-postNoBills" style={{backgroundColor: '#DCC131', padding: '2px 10px' }}>
+        <img src={bird} alt="CodeChef Bird" className="mx-1 w-[70px] h-[70px] sm:w-[75px] sm:h-[75px]"/>
+            <h2 className="font-bold p-3 text-center lead rounded-custom tracking-wider mt-0 text-[30px] sm:text-[40px] font-postNoBills" style={{backgroundColor: '#DCC131', padding: '2px 10px' }}>
                 LEADERBOARD
             </h2>
-            <img src={bird} alt="CodeChef Bird" className="transform scale-x-[-1] mx-1 bird-sm"/>
+            <img src={bird} alt="CodeChef Bird" className="transform scale-x-[-1] mx-1 w-[70px] h-[70px] sm:w-[75px] sm:h-[75px]"/>
         </div>
 
         <ul className="list-none p-0 w-full" style={{marginTop:'-10px'}}>
