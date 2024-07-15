@@ -1,0 +1,27 @@
+
+.animation{
+    transition:top 0.05s ease-in-out;
+}
+
+@font-face {
+    font-family: 'Post No Bills Jaffna ExtraBold Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Post No Bills Jaffna ExtraBold Regular'), url('PostNoBillsJaffna-ExtraBold.woff') format('woff');
+    }
+
+    .countdown{
+        font-family: 'Post No Bills Jaffna ExtraBold Regular';
+    font-style: normal;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    }
+    .countdown-text{
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #311F04;
+    }
+    .scorefont{
+        font-family: 'Post No Bills Jaffna ExtraBold Regular';
+    font-style: normal;
+    font-weight: bolder;
+    }
