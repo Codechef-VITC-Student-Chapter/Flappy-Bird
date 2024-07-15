@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  extend: {
+  theme: {
+    extend: {
       screens:{
         'max-w-600px':{'max':'600px'},
         'min-w-600px':{'min':'600px'},
@@ -11,5 +12,6 @@ export default {
         'fam':['"Post No Bills Jaffna ExtraBold"','sans-serif'],
       }
     },
+  },
   plugins: [],
 };
