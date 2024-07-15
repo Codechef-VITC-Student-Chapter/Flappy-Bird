@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "Post No Bills Colombo ExtraBold";
+  src: url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.eot");
+  src: url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/aac28a8d3a17309e7f5bd19aadcd7915.svg#Post No Bills Colombo ExtraBold")format("svg");
+}
+
+@font-face {
+  font-family: "Post No Bills Jaffna ExtraBold";
+  src: url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.eot");
+  src: url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/e243361f082e394bcb4f668fb566df49.svg#Post No Bills Jaffna ExtraBold")format("svg");
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
