@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import bgimage from "../assets/playscreen_bg.jpg";
 import mobilebg from "../assets/playscreen_mobile-bg.png";
 import pipeImg from "../assets/playscreen_obstacle.png";
-import "./CSSFiles/PlayScreen.css";
 
 import Bird from "./Objects/Bird.jsx";
 import Pipe from "./Objects/Pipe.jsx";
@@ -121,7 +120,7 @@ export default function PlayScreen({setScreen,score,setScore,bestScore,setBestSc
               setTimeout(()=>{
                   setBestScore(Math.max(score,bestScore));
                   setScreen("gameover");
-              },1000);
+              },250);
           }
           
           pipes.forEach(pipe => {
@@ -207,7 +206,6 @@ export default function PlayScreen({setScreen,score,setScore,bestScore,setBestSc
           ))}
 
           <ScoreBoard score={score}/>
-          {gameOver && <p className="absolute top-[50%] text-white text-4xl">Game Over</p>}
           <CountDown count={count} gameStarted={gameStarted}/>
           <Bird window_width={curr_dimensions.curr_width} bird_top={birdTop} gameOver={gameOver} />
         </div>
