@@ -6,6 +6,8 @@ import GameOver from "./screens/GameOver.jsx"
 import LeaderBoard from "./screens/LeaderBoard.jsx"
 import Certificate from "./screens/Certificate.jsx"
 
+import data from "./data/data.jsx"
+
 const players = [
   { name: 'Player 1', score: 150 },
   { name: 'Player 2', score: 120 },
@@ -29,6 +31,7 @@ function App() {
   //Backend part will be updated later 
   let playerName = "Guest";
   let leaderBoardData = [];
+  console.log(generateUserName());
 
   switch(screen){
     case "home" : return <HomePage setScreen={setScreen}/>
@@ -38,7 +41,14 @@ function App() {
     case "certificate" :return <Certificate setScreen={setScreen} playerName={playerName} bestScore={bestScore}/>
     default : return <HomePage setScreen={setScreen}/>
   }
-
 }
 
 export default App;
+
+const [animalBirdNames,adjectives] = data;
+
+const generateUserName = ()=>{ 
+  let animalIdx = Math.floor(Math.random()*100);
+  let adjectiveIdx = Math.floor(Math.random()*100);
+  return adjectives[adjectiveIdx] + animalBirdNames[animalIdx];
+}
