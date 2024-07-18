@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Post No Bills Colombo';
+    src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+.font-postNoBills {
+    font-family: 'Post No Bills Colombo', sans-serif;
+    font-weight: 800;
+}
+
+.font-inter{
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+}
+
+.countdown-text{
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #311F04;
+}
+.body{
+background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("./src/assets/leaderBoard_image_bg.png");
+}
+
+.out {
+  background-image: url('./src/assets/leaderBoard_tree_board.png');
+}
+
+@media only screen and (max-width: 1024px) {
+  .out {
+    background-image: url('./src/assets/leaderBoard_tree_board_sm.png');
+  }
+}
