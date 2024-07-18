@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../assets/certificate_codecheflogo.png';
-import "./CSSFiles/Certificate.css";
 
 const Certificate = ({ setScreen, playerName, bestScore }) => {
   const handleClose = () => {
@@ -11,7 +10,7 @@ const Certificate = ({ setScreen, playerName, bestScore }) => {
   return (
     <div className='flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-phoneview w-full sm:bg-deskview absolute h-screen'>
       <div className="bg-white p-7 shadow-lg w-11/12 mx-auto text-center mb-4 mt-4 sm:w-5/6 927px:w-2/3  ">
-      <div className="bg-white borderr">
+      <div className="bg-white border-[#DCA231] border-[5px]">
         <div className="mb-4">
           <img src={logo} alt="Logo" className="mx-auto sm:w-1/6 w-1/3 mb-2 mt-2" />
         </div>
@@ -25,7 +24,7 @@ const Certificate = ({ setScreen, playerName, bestScore }) => {
           <span className="text-2xl font-semibold font-inter text-[#076717] text-black mb-2 sm:text-2xl 741px:text-3xl sm: whitespace-nowrap flex-shrink">impressive score of</span>
         </div>
        
-        <p className="text-2xl sm:text-4xl font-bold text-black mb-4 sm:mb-10 "><span className=" ulll text-2xl sm:text-2xl 741px:text-3xl sm:flex-grow ">{bestScore}</span></p>
+        <p className="text-2xl sm:text-4xl font-bold text-black mb-4 sm:mb-10 "><span className="inline-block border-b-[1px] border-black w-[40%] text-2xl sm:text-2xl 741px:text-3xl sm:flex-grow ">{bestScore}</span></p>
     
       </div></div>
       <div className="text-center">

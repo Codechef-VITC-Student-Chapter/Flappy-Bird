@@ -1,5 +1,4 @@
 import React from "react";
-import "./CSSFiles/Leaderboard.css";
 import bird from "../assets/leaderBoard_bird.png";
 import crownGold from "../assets/leaderBoard_crown_r1.png";
 import crownSilver from "../assets/leaderBoard_crown_r2.png";
@@ -7,9 +6,9 @@ import crownBronze from "../assets/leaderBoard_crown_r3.png";
 
 const LeaderBoard = ({ setScreen, players }) => {
   return (
-    <div className="body lg:bg-[100%_100%] flex justify-center items-center min-h-screen w-full overflow-x-hidden">
+    <div className="body leaderboard-bg m-0 p-0 overflow-x-hidden bg-cover bg-no-repeat lg:bg-[100%_100%] flex justify-center items-center min-h-screen w-full overflow-x-hidden">
       {/* Div for larger screens */}
-      <div className="body hidden lg:flex w-full max-w-[1200px] items-center flex-col p-6 rounded-3xl shadow-lg out mx-auto min-h-screen big">
+      <div className="body leaderboard-bg m-0 p-0 overflow-x-visible hidden bg-cover bg-no-repeat lg:flex w-full max-w-[1200px] items-center flex-col p-6 rounded-3xl shadow-lg out bg-contain bg-no-repeat bg-center box-border max-w-[100%] w-[100%] mx-auto min-h-screen big">
         <div className="flex items-center t1" style={{marginTop: '-30px'}}>
           <img src={bird} alt="CodeChef Bird" className="mx-10" style={{ width: '120px', height: '120px' }}/>
           <h2 className="text-2xl font-bold p-3 text-center lead mt-0 pl-2 rounded-custom text-custom-large tracking-wider mt-16 font-postNoBills" style={{ backgroundColor: '#DCC131', padding: '23px 80px', paddingTop: '28px' }}>
@@ -81,7 +80,7 @@ const LeaderBoard = ({ setScreen, players }) => {
       </div>
 
       {/* Div for smaller screens */}
-      <div className="flex lg:hidden w-full max-w-[600px] items-center flex-col p-6 rounded-3xl shadow-lg out mx-auto min-h-screen bg-[calc(100%-1px)_calc(100%-1px)] bg-center bg-origin-content-box m-0 p-5">
+      <div className="flex lg:hidden w-full max-w-[600px] items-center flex-col p-6 rounded-3xl shadow-lg out bg-contain bg-no-repeat bg-center box-border max-w-[100%] w-[100%] mx-auto min-h-screen bg-[calc(100%-1px)_calc(100%-1px)] bg-center bg-origin-content-box m-0 p-5">
         {/* Mobile version content */}
         <div className="flex items-center mt-0" style={{marginTop:'-8px'}}>  
         <img src={bird} alt="CodeChef Bird" className="mx-1 w-[70px] h-[70px] sm:w-[75px] sm:h-[75px]"/>
