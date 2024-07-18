@@ -27,11 +27,12 @@ function App() {
   const [screen,setScreen] = useState("home");
   const [score,setScore] = useState(0);
   const [bestScore,setBestScore] = useState(0);
+  const [stayAnonymous,setStayAnonymous] = useState(false);
 
   //Backend part will be updated later 
   let playerName = "Guest";
   let leaderBoardData = [];
-  console.log(generateUserName());
+  if(stayAnonymous) playerName = generateUserName();
 
   switch(screen){
     case "home" : return <HomePage setScreen={setScreen}/>
