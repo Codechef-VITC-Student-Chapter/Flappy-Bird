@@ -318,24 +318,10 @@ export default function PlayScreen({
 
   const handleControl = () => {
     if (birdTop > 53 && gameStarted && !gameOver) {
-      setBirdTop((birdTop) => birdTop - 70);
+      setBirdVelocity(-10); // Set a negative velocity to simulate the jump
+      setBirdAngle(-30);
     }
   };
-
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     event.preventDefault();
-  //     if (event.key === " " && birdTop > 53 && gameStarted && !gameOver) {
-  //       setBirdTop((birdTop) => birdTop - 70);
-  //     }
-  //   };
-
-  //   document.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [birdTop, gameStarted, gameOver]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
