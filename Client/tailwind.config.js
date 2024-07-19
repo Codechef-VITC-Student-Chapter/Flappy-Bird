@@ -1,33 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       backgroundImage: {
-        "flappybird-playbg": "url('./src/assets/playscreen_bg.jpg')",
-        "flappybird-mobbg": "url('./src/assets/playscreen_mobile-bg.png')",
+        'flappybird-playbg': "url('./src/assets/playscreen_bg.jpg')",
+        'flappybird-mobbg': "url('./src/assets/playscreen_mobile-bg.png')",
         pipe: "url('./src/assets/playscreen_obstacle.png')",
         flappybird: "url('./src/assets/playscreen_bird.png')",
         flappybirdbigeye: "url('./src/assets/playscreen_bird_big_eye.png')",
-        "flappybird-desk": "url('./assets/homePage_desktopBg.png')",
-        "flappybird-mob": "url('./assets/homePage_mobileBg.png')",
-        "deskview": "url('./assets/certificate_gamebg.png')",
-        "phoneview": "url('./assets/certificate_phonebgg.png')",
+        'flappybird-desk': "url('./assets/homePage_desktopBg.png')",
+        'flappybird-mob': "url('./assets/homePage_mobileBg.png')",
+        deskview: "url('./assets/certificate_gamebg.png')",
+        phoneview: "url('./assets/certificate_phonebgg.png')",
       },
       screens: {
         '927px': '927px',
-        '741px':'741px',
+        '741px': '741px',
       },
       borderRadius: {
-        'custom': '50px',
+        custom: '50px',
         'custom-tl': '15px',
         'custom-br-tr': '50px',
-        'custom-bl': '50px', 
-  
-        
+        'custom-bl': '50px',
       },
 
       fontSize: {
@@ -40,7 +35,7 @@ module.exports = {
       },
 
       spacing: {
-        '16': '65px',
+        16: '65px',
         'custom-width': '230px',
         'custom-margin-top': '100px',
         '-45px': '-45px',
@@ -56,18 +51,17 @@ module.exports = {
         '30px': '30px',
         '25px': '25px',
         '40px': '40px',
-        '90px':'90px',
-        '100px':'100px'
+        '90px': '90px',
+        '100px': '100px',
       },
 
       letterSpacing: {
         'custom-spacing': '1px',
-
       },
       height: {
         '95px': '95px',
+      },
     },
+    plugins: [],
   },
-  plugins: [],
-},
-}
+};
