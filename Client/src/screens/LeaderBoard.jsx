@@ -1,10 +1,28 @@
-import React from "react";
+import {React, useState, useEffect } from "react";
 import bird from "../assets/leaderBoard_bird.png";
 import crownGold from "../assets/leaderBoard_crown_r1.png";
 import crownSilver from "../assets/leaderBoard_crown_r2.png";
 import crownBronze from "../assets/leaderBoard_crown_r3.png";
 
 const LeaderBoard = ({ setScreen, players }) => {
+  const [playersData, setPlayers] = useState([]);
+
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/gameusers');
+        const data = await response.json();
+        const sortedPlayers = data.sort((a, b) => a.rank - b.rank);
+        setPlayers(sortedPlayers);
+      } catch (error) {
+        console.error('Error fetching players:', error);
+      }
+    };
+
+    fetchPlayers();
+  }, []);
+
+  console.log(playersData);
   return (
     <div className="body leaderboard-bg m-0 p-0 overflow-x-hidden bg-cover bg-no-repeat lg:bg-[100%_100%] flex justify-center items-center min-h-screen w-full overflow-x-hidden">
       {/* Div for larger screens */}
@@ -28,8 +46,8 @@ const LeaderBoard = ({ setScreen, players }) => {
                 <span className="font-bold relative text-center min-w-[70px]">
                   <img src={crownBronze} alt="Crown" className="absolute crown3 h-80px top-[-45px] left-[-90px]"/>
                 </span>
-                <span className="text-center txt3 name-span text-custom-27px font-extrabold text-white">{players[2].name}</span>
-                <span className="text-center txt3 score-span mb-4 text-custom-27px font-extrabold text-white">{players[2].score}</span>
+                <span className="text-center txt3 name-span text-custom-27px font-extrabold text-white">{!(playersData[2] === undefined)?(playersData[2].username):("")}</span>
+                <span className="text-center txt3 score-span mb-4 text-custom-27px font-extrabold text-white">{!(playersData[2] === undefined)?(playersData[2].score):("")}</span>
               </li>
             )}
 
@@ -38,8 +56,8 @@ const LeaderBoard = ({ setScreen, players }) => {
                 <span className="font-bold txt1 relative text-center min-w-[80px]">
                   <img src={crownGold} alt="Crown" className="absolute crown1 -top-45px -left-110px w-100px h-90px" />
                 </span>
-                <span className="text-center name-span mt-4 text-custom-30px font-extrabold">{players[0].name}</span>
-                <span className="text-center score-span mt-3 mb-5 text-custom-30px font-extrabold">{players[0].score}</span>
+                <span className="text-center name-span mt-4 text-custom-30px font-extrabold">{!(playersData[0] === undefined)?(playersData[0].username):("")}</span>
+                <span className="text-center score-span mt-3 mb-5 text-custom-30px font-extrabold">{!(playersData[0] === undefined)?(playersData[0].score):("")}</span>
               </li>
             )}
 
@@ -48,14 +66,14 @@ const LeaderBoard = ({ setScreen, players }) => {
                 <span className="font-bold relative text-center min-w-[70px]">
                   <img src={crownSilver} alt="Crown" className="absolute crown2 w-90% h-80px top-[-45px] left-[-90px]"/>
                 </span>
-                <span className="text-center txt2 name-span text-custom-30px font-extrabold">{players[1].name}</span>
-                <span className="text-center txt2 score-span mt-0 mb-3 text-custom-30px font-extrabold">{players[1].score}</span>
+                <span className="text-center txt2 name-span text-custom-30px font-extrabold">{!(playersData[1] === undefined)?(playersData[1].username):("")}</span>
+                <span className="text-center txt2 score-span mt-0 mb-3 text-custom-30px font-extrabold">{!(playersData[1] === undefined)?(playersData[1].score):("")}</span>
               </li>
             )}
           </div>
 
           <div className="list w-[62%] text-white mx-auto max-h-[calc(100vh-500px)] overflow-y-auto mt-10">
-            {players.slice(3).map((player, index) => (
+            {playersData.slice(3).map((player, index) => (
               <li
                 key={index + 3}
                 className="bg-[#4D2E13] flex justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 w-full my-5"
@@ -63,7 +81,7 @@ const LeaderBoard = ({ setScreen, players }) => {
                 <span className="translucent-bg relative text-center font-bold text-[22px]">
                   #{index + 4}
                 </span>
-                <span className="text-center translucent-bg font-bold text-[22px]">{player.name}</span>
+                <span className="text-center translucent-bg font-bold text-[22px]">{player.username}</span>
                 <span className="text-center translucent-bg font-bold text-[22px]">{player.score}</span>
               </li>
             ))}
@@ -94,8 +112,8 @@ const LeaderBoard = ({ setScreen, players }) => {
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[gold] w-[80%] mt-[35px] p-0 relative">
                 <img src={crownGold} alt="Crown" className="absolute top-0 left-0 w-16 h-auto translate-x-[-50%] translate-y-[-50%] mt-[10px] ml-[10px]"/>
             
-                <span className="text-center name-span mt-4 text-custom-27px font-extrabold">{players[0].name}</span>
-                <span className="text-center score-span mt-3 mb-5 text-custom-30px font-extrabold">{players[0].score}</span>
+                <span className="text-center name-span mt-4 text-custom-27px font-extrabold">{!(playersData[0] === undefined)?(playersData[0].username):("")}</span>
+                <span className="text-center score-span mt-3 mb-5 text-custom-30px font-extrabold">{!(playersData[0] === undefined)?(playersData[0].score):("")}</span>
               </li>
             )}
           </div>
@@ -105,8 +123,8 @@ const LeaderBoard = ({ setScreen, players }) => {
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[#862220] w-[30%] mt-[65px] p-[3px] text-white relative">
                 <img src={crownBronze} alt="Crown" className="absolute top-0 left-0 w-16 h-auto translate-x-[-50%] translate-y-[-50%] mt-[10px] ml-[10px] w-[50px] top-[-10px] left-[-10px]"/>
               
-                <span className="text-center name-span mt-4 text-custom-22px font-bold">{players[2].name}</span>
-                <span className="text-center score-span mt-3 mb-5 text-custom-22px font-bold">{players[2].score}</span>
+                <span className="text-center name-span mt-4 text-custom-22px font-bold">{!(playersData[2] === undefined)?(playersData[2].username):("")}</span>
+                <span className="text-center score-span mt-3 mb-5 text-custom-22px font-bold">{!(playersData[2] === undefined)?(playersData[2].score):("")}</span>
               </li>
             )}
 
@@ -114,14 +132,14 @@ const LeaderBoard = ({ setScreen, players }) => {
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[silver] w-[40%] mt-[45px] p-[3px] relative">
                 <img src={crownSilver} alt="Crown" className="absolute top-0 left-0 w-16 h-auto translate-x-[-50%] translate-y-[-50%] mt-[10px] ml-[10px] top-[-10px] left-[-10px]"/>
              
-                <span className="text-center name-span mt-4 text-custom-27px font-bold">{players[1].name}</span>
-                <span className="text-center score-span mt-3 mb-6 text-custom-27px font-bold">{players[1].score}</span>
+                <span className="text-center name-span mt-4 text-custom-27px font-bold">{!(playersData[1] === undefined)?(playersData[1].username):("")}</span>
+                <span className="text-center score-span mt-3 mb-6 text-custom-27px font-bold">{!(playersData[1] === undefined)?(playersData[1].score):("")}</span>
               </li>
             )}
           </div>
 
           <div className="list w-[78%] text-white mx-auto max-h-[calc(100vh-450px)] overflow-y-auto mt-5">
-            {players.slice(3).map((player, index) => (
+            {playersData.slice(3).map((player, index) => (
               <li
                 key={index + 3}
                 className=" bg-[#4D2E13] flex justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 w-full"
@@ -129,7 +147,7 @@ const LeaderBoard = ({ setScreen, players }) => {
                 <span className="translucent-bg relative text-center font-bold text-[20px]">
                   #{index + 4}
                 </span>
-                <span className="text-center translucent-bg font-bold text-[20px]">{player.name}</span>
+                <span className="text-center translucent-bg font-bold text-[20px]">{player.username}</span>
                 <span className="text-center translucent-bg font-bold text-[20px]">{player.score}</span>
               </li>
             ))}
