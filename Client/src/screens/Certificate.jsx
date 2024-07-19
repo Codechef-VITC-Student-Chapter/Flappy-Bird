@@ -17,7 +17,7 @@ const Certificate = ({ setScreen, playerName, bestScore }) => {
         <h1 className="text-3xl sm:text-6xl mb-6 font-postNoBills text-[#076717]">CERTIFICATE</h1>
         <div className="flex flex-col items-center mb-6 sm:flex-row sm:items-start ">
           <p className="text-2xl sm:text-2xl 741px:text-3xl pr-4 font-semibold font-inter text-[#076717] mb-2 sm:flex-nowrap sm:flex-shrink ml-6"><span>Congratulations</span></p>
-          <span className="border-b-[1px] border-black text-2xl font-semibold font-inter text-black mb-2 sm:text-2xl 741px:text-3xl sm:flex-grow mr-4 ml-4">{playerName}</span>
+          <span className="border-b-[1px] border-black text-2xl font-semibold font-inter text-black mb-2 sm:text-2xl 741px:text-3xl sm:flex-grow mr-4 ml-4">{localStorage.getItem("username")}</span>
         </div>
         <div className="flex flex-col items-center mb-6 sm:flex-row sm:items-start sm:justify-center">
           <p className="text-2xl sm:text-2xl 741px:text-3xl pr-4 font-semibold font-inter text-[#076717] mb-2 sm:  whitespace-nowrap flex-shrink"><span>for achieving an</span></p>
