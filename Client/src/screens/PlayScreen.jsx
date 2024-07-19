@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from "react";
-import bgimage from "../assets/playscreen_bg.jpg";
-import mobilebg from "../assets/playscreen_mobile-bg.png";
-import pipeImg from "../assets/playscreen_obstacle.png";
+import { useEffect, useState, useRef } from 'react';
+import bgimage from '/playscreen_bg.jpg';
+import mobilebg from '/playscreen_mobile-bg.png';
+import pipeImg from '/playscreen_obstacle.png';
 
-import Bird from "./Objects/Bird.jsx";
-import Pipe from "./Objects/Pipe.jsx";
-import PipeBottom from "./Objects/PipeBottom.jsx";
-import ScoreBoard from "./Objects/ScoreBoard.jsx";
-import CountDown from "./Objects/CountDown.jsx";
+import Bird from './Objects/Bird.jsx';
+import Pipe from './Objects/Pipe.jsx';
+import PipeBottom from './Objects/PipeBottom.jsx';
+import ScoreBoard from './Objects/ScoreBoard.jsx';
+import CountDown from './Objects/CountDown.jsx';
 
 const gravity = 5;
 const birdWidth = 48;
@@ -15,26 +15,98 @@ const birdHeight = 53;
 const pipeWidth = 100;
 
 const animalsAndBirds = [
-  "Lion", "Elephant", "Tiger", "Giraffe", "Zebra", "Bear", "Kangaroo", "Panda", "Wolf",
-  "Deer", "Rabbit", "Fox", "Hippopotamus", "Rhinoceros", "Monkey", "Dolphin", "Whale",
-  "Shark", "Crocodile", "Turtle", "Eagle", "Parrot", "Sparrow", "Peacock", "Owl", "Penguin",
-  "Flamingo", "Pigeon", "Swan", "Seagull", "Woodpecker", "Hummingbird", "Kingfisher", "Robin",
-  "Canary", "Hawk", "Ostrich", "Pelican", "Toucan", "Vulture"
+  'Lion',
+  'Elephant',
+  'Tiger',
+  'Giraffe',
+  'Zebra',
+  'Bear',
+  'Kangaroo',
+  'Panda',
+  'Wolf',
+  'Deer',
+  'Rabbit',
+  'Fox',
+  'Hippopotamus',
+  'Rhinoceros',
+  'Monkey',
+  'Dolphin',
+  'Whale',
+  'Shark',
+  'Crocodile',
+  'Turtle',
+  'Eagle',
+  'Parrot',
+  'Sparrow',
+  'Peacock',
+  'Owl',
+  'Penguin',
+  'Flamingo',
+  'Pigeon',
+  'Swan',
+  'Seagull',
+  'Woodpecker',
+  'Hummingbird',
+  'Kingfisher',
+  'Robin',
+  'Canary',
+  'Hawk',
+  'Ostrich',
+  'Pelican',
+  'Toucan',
+  'Vulture',
 ];
 
 const adjectives = [
-  "Brave", "Majestic", "Ferocious", "Tall", "Striped", "Strong", "Agile", "Cuddly", "Fierce",
-  "Graceful", "Quick", "Sly", "Massive", "Horned", "Curious", "Intelligent", "Gentle", "Powerful",
-  "Stealthy", "Shelled", "Regal", "Colorful", "Chirpy", "Elegant", "Nocturnal", "Aquatic", "Pink",
-  "Urban", "Serene", "Coastal", "Persistent", "Tiny", "Vibrant", "Cheerful", "Sunny", "Sharp-eyed",
-  "Flightless", "Wide-beaked", "Exotic", "Scavenging"
+  'Brave',
+  'Majestic',
+  'Ferocious',
+  'Tall',
+  'Striped',
+  'Strong',
+  'Agile',
+  'Cuddly',
+  'Fierce',
+  'Graceful',
+  'Quick',
+  'Sly',
+  'Massive',
+  'Horned',
+  'Curious',
+  'Intelligent',
+  'Gentle',
+  'Powerful',
+  'Stealthy',
+  'Shelled',
+  'Regal',
+  'Colorful',
+  'Chirpy',
+  'Elegant',
+  'Nocturnal',
+  'Aquatic',
+  'Pink',
+  'Urban',
+  'Serene',
+  'Coastal',
+  'Persistent',
+  'Tiny',
+  'Vibrant',
+  'Cheerful',
+  'Sunny',
+  'Sharp-eyed',
+  'Flightless',
+  'Wide-beaked',
+  'Exotic',
+  'Scavenging',
 ];
 
 const getRandomName = () => {
-  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const randomAnimalOrBird = animalsAndBirds[Math.floor(Math.random() * animalsAndBirds.length)];
+  const randomAdjective =
+    adjectives[Math.floor(Math.random() * adjectives.length)];
+  const randomAnimalOrBird =
+    animalsAndBirds[Math.floor(Math.random() * animalsAndBirds.length)];
   const randomName = randomAdjective + randomAnimalOrBird;
-  localStorage.setItem("username",randomName);
+  localStorage.setItem('username', randomName);
   return randomName;
 };
 
@@ -66,7 +138,17 @@ const submitScore = async (username, score) => {
   }
 };
 
-export default function PlayScreen({ setScreen, score, setScore, bestScore, setBestScore }) {
+export default function PlayScreen({
+  setScreen,
+  score,
+  setScore,
+  bestScore,
+  setBestScore,
+}) {
+  const [birdVelocity, setBirdVelocity] = useState(0);
+  const [gravityAcceleration, setGravityAcceleration] = useState(1);
+  const [birdAngle, setBirdAngle] = useState(0);
+
   const [pipes, setPipes] = useState([]);
   const [curr_dimensions, setDimensions] = useState({
     curr_width: window.innerWidth,
@@ -105,25 +187,52 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
     }
   }, [count]);
 
+  // useEffect(() => {
+  //   if (gameStarted && !gameOver) {
+  //     const birdVal = setInterval(() => {
+  //       setBirdTop((birdTop) => Math.min(birdTop + gravity, window.innerHeight - birdHeight - 70));
+  //     }, 27);
+  //     return () => clearInterval(birdVal);
+  //   }
+  // }, [gameStarted, birdTop, gameOver]);
+
   useEffect(() => {
     if (gameStarted && !gameOver) {
       const birdVal = setInterval(() => {
-        setBirdTop((birdTop) => Math.min(birdTop + gravity, window.innerHeight - birdHeight - 70));
+        setBirdVelocity((prevVelocity) => prevVelocity + gravityAcceleration);
+        setBirdTop((prevBirdTop) => {
+          const newTop = Math.min(
+            prevBirdTop + birdVelocity,
+            window.innerHeight - birdHeight - 70
+          );
+          return newTop;
+        });
+        setBirdAngle(() => {
+          // Calculate the angle based on the velocity
+          const angle = Math.min(90, Math.max(-30, birdVelocity * 2)); // Adjust these values as needed
+          return angle;
+        });
       }, 27);
+
       return () => clearInterval(birdVal);
     }
-  }, [gameStarted, birdTop, gameOver]);
+  }, [gameStarted, birdVelocity, gravityAcceleration, gameOver]);
 
   useEffect(() => {
     if (gameStarted && !gameOver) {
       const pipesGenerated = setInterval(() => {
         const heightArray = [400, 150, 300, 250, 200, 350];
-        const randomIndex = Math.floor(Math.random() * (heightArray.length / 2)) * 2;
+        const randomIndex =
+          Math.floor(Math.random() * (heightArray.length / 2)) * 2;
         const randomHeight1 = heightArray[randomIndex];
         const randomHeight = heightArray[randomIndex + 1];
         setPipes((prevPipes) => [
           ...prevPipes,
-          { height: randomHeight, height1: randomHeight1, x: curr_dimensions.curr_width },
+          {
+            height: randomHeight,
+            height1: randomHeight1,
+            x: curr_dimensions.curr_width,
+          },
         ]);
       }, 3000);
       return () => clearInterval(pipesGenerated);
@@ -134,7 +243,9 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
     if (gameStarted && !gameOver) {
       const movePipes = setInterval(() => {
         setPipes((prevPipes) =>
-          prevPipes.map((pipe) => ({ ...pipe, x: pipe.x - 5 })).filter((pipe) => pipe.x > -pipeWidth)
+          prevPipes
+            .map((pipe) => ({ ...pipe, x: pipe.x - 5 }))
+            .filter((pipe) => pipe.x > -pipeWidth)
         );
       }, 20);
       return () => clearInterval(movePipes);
@@ -159,7 +270,8 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
           if (
             (birdRight > pipeLeft &&
               birdLeft < pipeRight &&
-              (birdTopPosition < topPipeBottom - 5 || birdBottom > bottomPipeTop - 5)) ||
+              (birdTopPosition < topPipeBottom - 5 ||
+                birdBottom > bottomPipeTop - 5)) ||
             curr_dimensions.curr_height - birdBottom <= 70
           ) {
             setGameOver(true);
@@ -167,7 +279,7 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
               setBestScore(Math.max(score, bestScore));
               const randomName = getRandomName();
               await submitScore(randomName, score);
-              setScreen("gameover");
+              setScreen('gameover');
             }, 250);
           }
 
@@ -210,24 +322,43 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
     }
   };
 
+  // useEffect(() => {
+  //   const handleKeyDown = (event) => {
+  //     event.preventDefault();
+  //     if (event.key === " " && birdTop > 53 && gameStarted && !gameOver) {
+  //       setBirdTop((birdTop) => birdTop - 70);
+  //     }
+  //   };
+
+  //   document.addEventListener("keydown", handleKeyDown);
+
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, [birdTop, gameStarted, gameOver]);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       event.preventDefault();
-      if (event.key === " " && birdTop > 53 && gameStarted && !gameOver) {
-        setBirdTop((birdTop) => birdTop - 70);
+      if (event.key === ' ' && birdTop > 53 && gameStarted && !gameOver) {
+        setBirdVelocity(-10); // Set a negative velocity to simulate the jump
+        setBirdAngle(-30);
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [birdTop, gameStarted, gameOver]);
 
   return (
     <>
-      <div className="w-full h-[100vh] flex align-middle justify-center overflow-x-hidden" onClick={handleControl}>
+      <div
+        className="w-full h-[100vh] flex align-middle justify-center overflow-x-hidden"
+        onClick={handleControl}
+      >
         <div className="w-full h-[100vh] flex align-middle justify-center relative bg-black">
           <img
             src={curr_dimensions.curr_width > 640 ? bgimage : mobilebg}
@@ -239,14 +370,31 @@ export default function PlayScreen({ setScreen, score, setScore, bestScore, setB
             className="opacity-70"
           />
           {pipes.map((pipe, index) => (
-            <Pipe key={`top-${index}`} x={pipe.x} height={pipe.height} pipeImg={pipeImg} pipeWidth={pipeWidth} />
+            <Pipe
+              key={`top-${index}`}
+              x={pipe.x}
+              height={pipe.height}
+              pipeImg={pipeImg}
+              pipeWidth={pipeWidth}
+            />
           ))}
           {pipes.map((pipe, index) => (
-            <PipeBottom key={`bottom-${index}`} x={pipe.x} height={pipe.height1} pipeImg={pipeImg} pipeWidth={pipeWidth} />
+            <PipeBottom
+              key={`bottom-${index}`}
+              x={pipe.x}
+              height={pipe.height1}
+              pipeImg={pipeImg}
+              pipeWidth={pipeWidth}
+            />
           ))}
           <ScoreBoard score={score} />
           <CountDown count={count} gameStarted={gameStarted} />
-          <Bird window_width={curr_dimensions.curr_width} bird_top={birdTop} gameOver={gameOver} />
+          <Bird
+            window_width={curr_dimensions.curr_width}
+            bird_top={birdTop}
+            gameOver={gameOver}
+            birdAngle={birdAngle}
+          />
         </div>
       </div>
     </>
