@@ -8,6 +8,27 @@
     font-weight: 800;
     font-style: normal;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+  margin: 4px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #4D2E13; 
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8874F; 
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffa15f; 
+}
+
 .font-postNoBills {
     font-family: 'Post No Bills Colombo', sans-serif;
     font-weight: 800;
