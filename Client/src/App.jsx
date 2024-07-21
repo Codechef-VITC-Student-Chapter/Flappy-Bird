@@ -24,10 +24,10 @@ function App() {
     case "gameover" : return <GameOver setScreen={setScreen} score={score} setScore={setScore} bestScore={bestScore}/>
     case "leaderboard" : return <LeaderBoard setScreen={setScreen} leaderBoardData={leaderBoardData}/>
     case "certificate" :return <Certificate setScreen={setScreen} playerName={playerName} bestScore={bestScore}/>
-    case "signin" :return <SignInPage setScreen={setScreen} setStayAnonymous={setStayAnonymous}/>
+    case "signin" : return <SignInPage setScreen={setScreen} setStayAnonymous={setStayAnonymous}/>
+    case "auth" : return <h1>Authorisation Page</h1>
     default : return <HomePage setScreen={setScreen}/>
   }
-
 }
 
 export default App;
