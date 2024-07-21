@@ -26,7 +26,7 @@ const players = [
 ];
 
 function App() {
-  const [screen,setScreen] = useState("signin");
+  const [screen,setScreen] = useState("home");
   const [score,setScore] = useState(0);
   const [bestScore,setBestScore] = useState(0);
   const [stayAnonymous,setStayAnonymous] = useState(false);
