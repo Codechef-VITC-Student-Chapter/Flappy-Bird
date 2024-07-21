@@ -1,49 +1,53 @@
-import Pgrd from "../assets/LoginPage_bg.png"
-import Note from "../assets/LoginPage_board.png"
-import signb from "../assets/LoginPage_signboard1.png"
-import Google from "./Objects/Google.jsx"
-import Anony from "./Objects/Anonymous.jsx"
+import Pgrd from "../assets/LoginPage_bg.png";
+import Note from "../assets/LoginPage_board.png";
+import signb from "../assets/LoginPage_signboard1.png";
+import GoogleIcon from "../assets/google-icon.png"; // Assuming you have this icon
+import AnonyPersonIcon from "../assets/anonymous-icon.png"; // Assuming you have this icon
 
-function SignInPage({setScreen,setStayAnonymous}){
- 
-    const newSignin=()=>{
+function SignInPage({ setScreen, setStayAnonymous }) {
+    const newSignin = () => {
         setScreen('auth');
         setStayAnonymous(false);
     }
-
-    const newAnonymous=()=>{
+    const newAnonymous = () => {
         setScreen('gameover');
         setStayAnonymous(true);
     }
-    
-    return(
-        <>
-        <img src={Pgrd} className="absolute h-screen w-screen z-[-10]" />
-        <div className="relative">
-            <img src={Note} className="z-[10] md:-top-20 -top-10 left-[50px] md:left-0 absolute md:pl-[530px] md:w-[1000px] w-[400px] " />
-            <p className="z-[20] md:pt-20 pt-[100px] pl-2 absolute -top-6 inset-0 flex items-center justify-center font-fonts md:text-[45px] text-[35px] text-white ">Login to have your name</p>
-            <p className="z-[20] md:pt-20 pt-[90px] pl-2 absolute top-10 inset-0 flex items-center justify-center font-fonts md:text-[45px] text-[35px] text-white ">on the leaderboard</p>
-        </div>
 
-        <div className="relative flex justify-center items-center ">
-            
-            <img src={signb} className="absolute z-[10] top-[290px] md:top-[238px] md:w-[450px] md:h-[490px] w-[350px] h-[390px]  " alt="Signboard" />
-            <div className="group">
-                <Google />
-                <button className="absolute z-[20] left-[120px] md:left-[584px] group-hover:left-[105px] md:group-hover:left-[620px] top-[325px] md:top-[290px] group-hover:top-[330px] md:group-hover:top-[300px] md:h-[70px] md:w-[380px] h-[80px] group-hover:h-[60px] w-[280px] group-hover:w-[300px] bg-yellow-400 rounded-[50px]" onClick={() => newSignin()} >
-                    <p className="!font-fam md:text-[25px] group-hover:text-[20px] text-[15px] md:pl-20 pl-[70px] ">Sign in with college mail id </p>
-                </button>
+    return (
+        <div className="h-screen w-screen overflow-hidden bg-signin-bg bg-cover bg-no-repeat flex flex-col justify-between">
+            {/* <img src={Pgrd} className="absolute h-screen w-screen z-[-10]" /> */}
+            <div className="relative flex flex-col items-center">
+                <img src={Note} className="z-[10] absolute w-[400px] md:w-[500px] lg:w-[650px] top-0 md:top-0 lg:-top-20" />
+                <div className="z-[20] absolute text-center pt-[100px] md:pt-[120px] lg:pt-20">
+                    <p className="font-fonts text-[35px] md:text-[40px] lg:text-[45px] text-white">Login to have your name</p>
+                    <p className="font-fonts text-[35px] md:text-[40px] lg:text-[45px] text-white">on the leaderboard</p>
+                </div>
             </div>
-            
-            <div className="group">
-                <Anony />
-                <button className="left-[110px] md:left-[584px] group-hover:left-[100px] md:group-hover:left-[600px] absolute z-[20] top-[480px] md:top-[490px] group-hover:top-[490px] md:group-hover:top-[490px] md:h-[70px] md:w-[380px] h-[80px] w-[280px] group-hover:h-[60px] group-hover:w-[300px] md:group-hover:h-[70px] md:group-hover:w-[310px] bg-yellow-400 rounded-[50px]" onClick={() => newAnonymous()}>
-                    <p className="!font-fam md:text-[25px] group-hover:text-[22px] text-[15px] pl-4 md:group-hover:pl-[50px]" >Stay Anonymous</p>
-                </button>
+
+            <div className="relative flex justify-center items-center h-screen bottom-0">
+                <img src={signb} className="absolute z-[10] bottom-0 md:top-[335px]  w-[350px] md:w-[400px] lg:w-[400px] h-[390px] md:h-[440px] lg:h-[440px]" alt="Signboard" />
+               
+                <div className="absolute bottom-[285px] md:top-[388px] lg:bottom-[310px] flex justify-center w-full">
+                    <button className="z-[20] h-[60px] w-[240px] md:h-[70px] md:w-[310px] lg:w-[310px] bg-yellow-400 rounded-[50px] flex items-center justify-center px-4 hover:bg-green-800 hover:text-white" onClick={newSignin}>
+                        <img src={GoogleIcon} alt="Google Icon" style={{ width: '30px', height: '30px' }} className="mr-2" />
+                        <p className="!font-fam text-[15px] md:text-[20px] lg:text-[23px] hover:text-[20px]">
+                            Sign in with college mail id
+                        </p>
+                    </button>
+                </div>
+
+                <div className="absolute bottom-[145px] md:top-[548px] lg:bottom-[35px] flex justify-center w-full">
+                    <button className="z-[20] h-[60px] w-[240px] md:h-[70px] md:w-[310px] lg:w-[310px] bg-yellow-400 rounded-[50px] flex items-center justify-center px-4 hover:bg-green-800 hover:text-white" onClick={newAnonymous}>
+                        <img src={AnonyPersonIcon} alt="Anonymous Person Icon" style={{ width: '50px', height: '50px' }} className="mr-2" />
+                        <p className="!font-fam text-[15px] md:text-[20px] lg:text-[23px] hover:text-[22px]">
+                            Stay Anonymous
+                        </p>
+                    </button>
+                </div>
             </div>
         </div>
-        </>
     );
 }
 
-export default SignInPage
+export default SignInPage;
