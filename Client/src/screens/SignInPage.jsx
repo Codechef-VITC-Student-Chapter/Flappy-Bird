@@ -15,7 +15,8 @@ function SignInPage({ setScreen, setStayAnonymous }) {
     }
 
     return (
-        <div className="h-screen w-screen overflow-hidden bg-signin-bg bg-cover bg-no-repeat flex flex-col justify-between">
+        <div className="h-screen w-screen 
+        overflow-hidden bg-signin-bg bg-cover bg-center bg-no-repeat flex flex-col justify-between">
             {/* <img src={Pgrd} className="absolute h-screen w-screen z-[-10]" /> */}
             <div className="relative flex flex-col items-center">
                 <img src={Note} className="z-[10] absolute w-[400px] md:w-[500px] lg:w-[650px] top-0 md:top-0 lg:-top-20" />
