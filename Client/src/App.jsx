@@ -5,6 +5,8 @@ import PlayScreen from "./screens/PlayScreen.jsx"
 import GameOver from "./screens/GameOver.jsx"
 import LeaderBoard from "./screens/LeaderBoard.jsx"
 import Certificate from "./screens/Certificate.jsx"
+import SignInPage from "./screens/SignInPage.jsx"
+
 
 import data from "./data/data.jsx"
 
@@ -24,7 +26,7 @@ const players = [
 ];
 
 function App() {
-  const [screen,setScreen] = useState("home");
+  const [screen,setScreen] = useState("signin");
   const [score,setScore] = useState(0);
   const [bestScore,setBestScore] = useState(0);
   const [stayAnonymous,setStayAnonymous] = useState(false);
@@ -40,6 +42,8 @@ function App() {
     case "gameover" : return <GameOver setScreen={setScreen} score={score} setScore={setScore} bestScore={bestScore}/>
     case "leaderboard" : return <LeaderBoard setScreen={setScreen} leaderBoardData={leaderBoardData} players={players} />
     case "certificate" :return <Certificate setScreen={setScreen} playerName={playerName} bestScore={bestScore}/>
+    case "signin" : return <SignInPage setScreen={setScreen} setStayAnonymous={setStayAnonymous}/>
+    case "auth" : return <h1>Authorisation Page</h1>
     default : return <HomePage setScreen={setScreen}/>
   }
 }
