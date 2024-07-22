@@ -14,6 +14,9 @@ import PipeBottom from './Objects/PipeBottom.jsx';
 import ScoreBoard from './Objects/ScoreBoard.jsx';
 import CountDown from './Objects/CountDown.jsx';
 
+import GameOver from './GameOver.jsx';
+import Certificate from './Certificate.jsx';
+
 const birdWidth = 48;
 const birdHeight = 53;
 
@@ -142,7 +145,6 @@ const submitScore = async (username, score) => {
 };
 
 export default function PlayScreen({
-  setScreen,
   score,
   setScore,
   bestScore,
@@ -152,6 +154,8 @@ export default function PlayScreen({
   const [birdVelocity, setBirdVelocity] = useState(0);
   const [gravityAcceleration, setGravityAcceleration] = useState(1);
   const [birdAngle, setBirdAngle] = useState(0);
+
+  const [screen, setScreen] = useState('play');
 
   const [pipes, setPipes] = useState([]);
   const [curr_dimensions, setDimensions] = useState({
@@ -351,48 +355,67 @@ export default function PlayScreen({
     };
   }, [birdTop, gameStarted, gameOver]);
 
-  return (
-    <>
-      <div
-        className="w-full h-[100vh] flex align-middle justify-center overflow-x-hidden"
-        onClick={handleControl}
-      >
-        <div className="w-full h-[100vh] flex align-middle justify-center relative bg-black">
-          <img
-            src={curr_dimensions.curr_width > 640 ? bgimage : mobilebg}
-            width="100%"
-            height="auto"
-            id="background"
-            ref={imageRef}
-            alt="background"
-            className="opacity-70"
-          />
-          {pipes.map((pipe, index) => (
-            <Pipe
-              key={`top-${index}`}
-              x={pipe.x}
-              pipeImg={pipe.img}
-              pipeWidth={pipeWidth}
+  if (screen == 'play') {
+    return (
+      <>
+        <div
+          className="w-full h-[100vh] flex align-middle justify-center overflow-x-hidden"
+          onClick={handleControl}
+        >
+          <div className="w-full h-[100vh] flex align-middle justify-center relative bg-black">
+            <img
+              src={curr_dimensions.curr_width > 640 ? bgimage : mobilebg}
+              width="100%"
+              height="auto"
+              id="background"
+              ref={imageRef}
+              alt="background"
+              className="opacity-70"
             />
-          ))}
-          {pipes.map((pipe, index) => (
-            <PipeBottom
-              key={`bottom-${index}`}
-              x={pipe.x}
-              pipeImg={pipe.img1}
-              pipeWidth={pipeWidth}
+            {pipes.map((pipe, index) => (
+              <Pipe
+                key={`top-${index}`}
+                x={pipe.x}
+                pipeImg={pipe.img}
+                pipeWidth={pipeWidth}
+              />
+            ))}
+            {pipes.map((pipe, index) => (
+              <PipeBottom
+                key={`bottom-${index}`}
+                x={pipe.x}
+                pipeImg={pipe.img1}
+                pipeWidth={pipeWidth}
+              />
+            ))}
+            <ScoreBoard score={score} />
+            <CountDown count={count} gameStarted={gameStarted} />
+            <Bird
+              window_width={curr_dimensions.curr_width}
+              bird_top={birdTop}
+              gameOver={gameOver}
+              birdAngle={birdAngle}
             />
-          ))}
-          <ScoreBoard score={score} />
-          <CountDown count={count} gameStarted={gameStarted} />
-          <Bird
-            window_width={curr_dimensions.curr_width}
-            bird_top={birdTop}
-            gameOver={gameOver}
-            birdAngle={birdAngle}
-          />
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else if (screen == 'gameover') {
+    return (
+      <GameOver
+        setScreen={setScreen}
+        score={score}
+        setScore={setScore}
+        bestScore={bestScore}
+      />
+    );
+  } else if (screen == 'certificate') {
+    return (
+      <Certificate
+        setScreen={setScreen}
+        playerName={getRandomName()}
+        bestScore={bestScore}
+      />
+    );
+  }
 }
