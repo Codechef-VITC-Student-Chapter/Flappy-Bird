@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'fonts': ['"Post No Bills Colombo ExtraBold"','sans-serif'],
-        'fam':['"Post No Bills Jaffna ExtraBold"','sans-serif'],
+        fonts: ['"Post No Bills Colombo ExtraBold"', 'sans-serif'],
+        fam: ['"Post No Bills Jaffna ExtraBold"', 'sans-serif'],
       },
-    backgroundImage: {
-       "signin-bg":"url(./src/assets/LoginPage_bg.png)",
-        "flappybird-playbg": "url('./src/assets/playscreen_bg.jpg')",
-        "flappybird-mobbg": "url('./src/assets/playscreen_mobile-bg.png')",
+      backgroundImage: {
+        'signin-bg': 'url(./src/assets/LoginPage_bg.png)',
+        'flappybird-playbg': "url('./src/assets/playscreen_bg.jpg')",
+        'flappybird-mobbg': "url('./src/assets/playscreen_mobile-bg.png')",
         pipe: "url('./src/assets/playscreen_obstacle.png')",
         flappybird: "url('../src/assets/playscreen_bird.png')",
         flappybirdbigeye: "url('../src/assets/playscreen_bird_big_eye.png')",
@@ -20,8 +20,8 @@ module.exports = {
         phoneview: "url('./assets/certificate_phonebgg.png')",
       },
       screens: {
-        'max-w-600px':{'max':'600px'},
-        'min-w-600px':{'min':'600px'},
+        'max-w-600px': { max: '600px' },
+        'min-w-600px': { min: '600px' },
         '927px': '927px',
         '741px': '741px',
       },
@@ -29,7 +29,7 @@ module.exports = {
         custom: '50px',
         'custom-tl': '15px',
         'custom-br-tr': '50px',
-        'custom-bl': '50px',       
+        'custom-bl': '50px',
       },
 
       fontSize: {

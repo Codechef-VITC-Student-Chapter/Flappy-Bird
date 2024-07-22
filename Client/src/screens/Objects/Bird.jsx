@@ -1,5 +1,4 @@
 const Bird = (props) => {
-  console.log(props.birdAngle);
   return (
     <div
       className={
