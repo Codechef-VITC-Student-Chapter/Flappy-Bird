@@ -20,129 +20,6 @@ import Certificate from './Certificate.jsx';
 const birdWidth = 48;
 const birdHeight = 53;
 
-const animalsAndBirds = [
-  'Lion',
-  'Elephant',
-  'Tiger',
-  'Giraffe',
-  'Zebra',
-  'Bear',
-  'Kangaroo',
-  'Panda',
-  'Wolf',
-  'Deer',
-  'Rabbit',
-  'Fox',
-  'Hippopotamus',
-  'Rhinoceros',
-  'Monkey',
-  'Dolphin',
-  'Whale',
-  'Shark',
-  'Crocodile',
-  'Turtle',
-  'Eagle',
-  'Parrot',
-  'Sparrow',
-  'Peacock',
-  'Owl',
-  'Penguin',
-  'Flamingo',
-  'Pigeon',
-  'Swan',
-  'Seagull',
-  'Woodpecker',
-  'Hummingbird',
-  'Kingfisher',
-  'Robin',
-  'Canary',
-  'Hawk',
-  'Ostrich',
-  'Pelican',
-  'Toucan',
-  'Vulture',
-];
-
-const adjectives = [
-  'Brave',
-  'Majestic',
-  'Ferocious',
-  'Tall',
-  'Striped',
-  'Strong',
-  'Agile',
-  'Cuddly',
-  'Fierce',
-  'Graceful',
-  'Quick',
-  'Sly',
-  'Massive',
-  'Horned',
-  'Curious',
-  'Intelligent',
-  'Gentle',
-  'Powerful',
-  'Stealthy',
-  'Shelled',
-  'Regal',
-  'Colorful',
-  'Chirpy',
-  'Elegant',
-  'Nocturnal',
-  'Aquatic',
-  'Pink',
-  'Urban',
-  'Serene',
-  'Coastal',
-  'Persistent',
-  'Tiny',
-  'Vibrant',
-  'Cheerful',
-  'Sunny',
-  'Sharp-eyed',
-  'Flightless',
-  'Wide-beaked',
-  'Exotic',
-  'Scavenging',
-];
-
-const getRandomName = () => {
-  const randomAdjective =
-    adjectives[Math.floor(Math.random() * adjectives.length)];
-  const randomAnimalOrBird =
-    animalsAndBirds[Math.floor(Math.random() * animalsAndBirds.length)];
-  const randomName = randomAdjective + randomAnimalOrBird;
-  localStorage.setItem('username', randomName);
-  return randomName;
-};
-
-const submitScore = async (username, score) => {
-  try {
-    const rank = -1;
-    const data = {
-      username,
-      score,
-      rank,
-    };
-
-    const response = await fetch('http://localhost:5000/api/gameusers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to submit game data');
-    }
-
-    const result = await response.json();
-    console.log(result.message);
-  } catch (error) {
-    console.error('Error submitting game data:', error);
-  }
-};
 
 export default function PlayScreen({
   score,
@@ -293,8 +170,7 @@ export default function PlayScreen({
             setGameOver(true);
             setTimeout(async () => {
               setBestScore(Math.max(score, bestScore));
-              const randomName = getRandomName();
-              await submitScore(randomName, score);
+              localStorage.setItem("CurrentScore",score);
               setScreen('gameover');
             }, 250);
           }

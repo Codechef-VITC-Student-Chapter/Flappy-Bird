@@ -1,10 +1,13 @@
 import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import bird from '/leaderBoard_bird.png';
 import crownGold from '/leaderBoard_crown_r1.png';
 import crownSilver from '/leaderBoard_crown_r2.png';
 import crownBronze from '/leaderBoard_crown_r3.png';
 
 const LeaderBoard = ({ setScreen, players }) => {
+  const navigate = useNavigate();
   const [playersData, setPlayers] = useState([]);
 
   useEffect(() => {
@@ -126,7 +129,7 @@ const LeaderBoard = ({ setScreen, players }) => {
           </div>
         </ul>
         <button
-          onClick={() => setScreen('gameover')}
+          onClick={() => navigate("/play")}
           className="font-postNoBills bg-[#DCC131] text-black px-12 py-2 text-3xl rounded shadow hover:bg-green-700 transition duration-300 mt-10 text-2xl sm:text-5xl rounded-full"
         >
           Close
@@ -234,7 +237,7 @@ const LeaderBoard = ({ setScreen, players }) => {
           </div>
         </ul>
         <button
-          onClick={() => setScreen('gameover')}
+          onClick={() => navigate("/play")}
           className="font-postNoBills bg-[#DCC131] text-black px-12 py-2 text-3xl rounded shadow hover:bg-green-700 transition duration-300 mt-10 text-2xl sm:text-5xl rounded-full"
         >
           Close
