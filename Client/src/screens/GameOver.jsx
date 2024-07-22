@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import bg1 from '/gameOver_bg.png';
 import bg2 from '/gameOver_bg2.png';
+import signboard from '/signboard.png';
 
 const GameOver = ({ setScreen, score, setScore, bestScore }) => {
   const navigate = useNavigate();
@@ -25,7 +26,12 @@ const GameOver = ({ setScreen, score, setScore, bestScore }) => {
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
 
-      <div className="relative w-[307px] h-[240px] md:w-[819px] md:h-[535px] bg-[#C16A4D] rounded-[23px] md:rounded-[50px] flex flex-col items-center justify-center p-4 md:p-8 font-postNoBills font-extrabold text-center z-10">
+      <div
+        style={{
+          backgroundImage: `url(${signboard})`,
+        }}
+        className="relative w-[307px] h-[240px] md:w-[819px] md:h-[535px] rounded-[23px] md:rounded-[50px] flex flex-col items-center justify-center p-4 md:p-8 font-postNoBills font-extrabold text-center z-10"
+      >
         <div className="h-[30px] w-[160px] bg-[#DCC131] mb-3 rounded-[20px] text-[27.4px] md:bg-[#DCC131] md:px-6 md:py-1 md:rounded-[65.79px] md:mb-12 md:w-[490px] md:h-[91.88px] md:absolute top-[37px] left-[180px]">
           <h1 className="text-black text-2xl md:text-[73.1px] md:leading-[78.61px] mb-4 md:mb-1 tracking-wider md:w-[386.22px] md:h-[100.38px] md:pl-[33px]">
             GAME OVER
