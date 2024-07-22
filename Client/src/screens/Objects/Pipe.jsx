@@ -7,7 +7,7 @@ const Pipe = ({ x, height, pipeWidth, pipeImg }) => {
       style={{
         position: 'absolute',
         left: x,
-        top: 0,
+        top: -5,
         width: pipeWidth,
         //border:"2px solid black",
         transform: 'rotate(180deg)',
