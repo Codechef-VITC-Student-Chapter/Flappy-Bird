@@ -1,7 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import bgimage from '/playscreen_bg.jpg';
 import mobilebg from '/playscreen_mobile-bg.png';
-import pipeImg from '/playscreen_obstacle.png';
+
+import pipe_xs from '/Totem-xs.png';
+import pipe_s from '/Totem-s.png';
+import pipe_m from '/Totem-m.png';
+import pipe_l from '/Totem-l.png';
+import pipe_xl from '/Totem-xl.png';
 
 import Bird from './Objects/Bird.jsx';
 import Pipe from './Objects/Pipe.jsx';
@@ -9,10 +14,8 @@ import PipeBottom from './Objects/PipeBottom.jsx';
 import ScoreBoard from './Objects/ScoreBoard.jsx';
 import CountDown from './Objects/CountDown.jsx';
 
-const gravity = 5;
 const birdWidth = 48;
 const birdHeight = 53;
-const pipeWidth = 100;
 
 const animalsAndBirds = [
   'Lion',
@@ -145,6 +148,7 @@ export default function PlayScreen({
   bestScore,
   setBestScore,
 }) {
+  const pipeWidth = window.innerHeight / 7.5;
   const [birdVelocity, setBirdVelocity] = useState(0);
   const [gravityAcceleration, setGravityAcceleration] = useState(1);
   const [birdAngle, setBirdAngle] = useState(0);
@@ -187,15 +191,6 @@ export default function PlayScreen({
     }
   }, [count]);
 
-  // useEffect(() => {
-  //   if (gameStarted && !gameOver) {
-  //     const birdVal = setInterval(() => {
-  //       setBirdTop((birdTop) => Math.min(birdTop + gravity, window.innerHeight - birdHeight - 70));
-  //     }, 27);
-  //     return () => clearInterval(birdVal);
-  //   }
-  // }, [gameStarted, birdTop, gameOver]);
-
   useEffect(() => {
     if (gameStarted && !gameOver) {
       const birdVal = setInterval(() => {
@@ -221,14 +216,31 @@ export default function PlayScreen({
   useEffect(() => {
     if (gameStarted && !gameOver) {
       const pipesGenerated = setInterval(() => {
-        const heightArray = [400, 150, 300, 250, 200, 350];
-        const randomIndex =
-          Math.floor(Math.random() * (heightArray.length / 2)) * 2;
-        const randomHeight1 = heightArray[randomIndex];
-        const randomHeight = heightArray[randomIndex + 1];
+        const heightArray = [
+          [pipe_xs, 1.39 * pipeWidth],
+          [pipe_s, 1.85 * pipeWidth],
+          [pipe_m, 2.56 * pipeWidth],
+          [pipe_l, 3.26 * pipeWidth],
+          [pipe_xl, 3.675 * pipeWidth],
+        ];
+        const heightArray2 = [
+          [pipe_xl, 3.675 * pipeWidth],
+          [pipe_l, 3.26 * pipeWidth],
+          [pipe_m, 2.56 * pipeWidth],
+          [pipe_s, 1.85 * pipeWidth],
+          [pipe_xs, 1.39 * pipeWidth],
+        ];
+
+        const randomIndex = Math.floor(Math.random() * 5);
+        const randomImage1 = heightArray[randomIndex][0];
+        const randomImage = heightArray2[randomIndex][0];
+        const randomHeight1 = heightArray[randomIndex][1];
+        const randomHeight = heightArray2[randomIndex][1];
         setPipes((prevPipes) => [
           ...prevPipes,
           {
+            img: randomImage,
+            img1: randomImage1,
             height: randomHeight,
             height1: randomHeight1,
             x: curr_dimensions.curr_width,
@@ -264,7 +276,7 @@ export default function PlayScreen({
           const pipeLeft = pipe.x;
           const pipeRight = pipe.x + pipeWidth;
 
-          const topPipeBottom = pipe.height - 70;
+          const topPipeBottom = pipe.height;
           const bottomPipeTop = curr_dimensions.curr_height - pipe.height1 - 70;
 
           if (
@@ -322,21 +334,6 @@ export default function PlayScreen({
     }
   };
 
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     event.preventDefault();
-  //     if (event.key === " " && birdTop > 53 && gameStarted && !gameOver) {
-  //       setBirdTop((birdTop) => birdTop - 70);
-  //     }
-  //   };
-
-  //   document.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [birdTop, gameStarted, gameOver]);
-
   useEffect(() => {
     const handleKeyDown = (event) => {
       event.preventDefault();
@@ -373,8 +370,7 @@ export default function PlayScreen({
             <Pipe
               key={`top-${index}`}
               x={pipe.x}
-              height={pipe.height}
-              pipeImg={pipeImg}
+              pipeImg={pipe.img}
               pipeWidth={pipeWidth}
             />
           ))}
@@ -382,8 +378,7 @@ export default function PlayScreen({
             <PipeBottom
               key={`bottom-${index}`}
               x={pipe.x}
-              height={pipe.height1}
-              pipeImg={pipeImg}
+              pipeImg={pipe.img1}
               pipeWidth={pipeWidth}
             />
           ))}
