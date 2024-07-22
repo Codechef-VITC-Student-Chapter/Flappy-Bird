@@ -340,7 +340,6 @@ export default function PlayScreen({
     };
   }, [birdTop, gameStarted, gameOver]);
 
-
   if (screen == 'play') {
     return (
       <>
@@ -348,16 +347,11 @@ export default function PlayScreen({
           className="w-full h-[100vh] flex align-middle justify-center overflow-x-hidden"
           onClick={handleControl}
         >
-          <div className="w-full h-[100vh] flex align-middle justify-center relative bg-black">
-            <img
-              src={curr_dimensions.curr_width > 640 ? bgimage : mobilebg}
-              width="100%"
-              height="auto"
-              id="background"
-              ref={imageRef}
-              alt="background"
-              className="opacity-70"
-            />
+          <div
+            className={
+              'background-stuff w-full h-[100vh] flex align-middle justify-center relative min-h-screen bg-scroll'
+            }
+          >
             {pipes.map((pipe, index) => (
               <Pipe
                 key={`top-${index}`}
