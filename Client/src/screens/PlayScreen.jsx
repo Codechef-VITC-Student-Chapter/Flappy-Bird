@@ -1,6 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import bgimage from '/playscreen_bg.jpg';
-import mobilebg from '/playscreen_mobile-bg.png';
 
 import pipe_xs from '/Totem-xs.png';
 import pipe_s from '/Totem-s.png';
@@ -13,6 +11,8 @@ import Pipe from './Objects/Pipe.jsx';
 import PipeBottom from './Objects/PipeBottom.jsx';
 import ScoreBoard from './Objects/ScoreBoard.jsx';
 import CountDown from './Objects/CountDown.jsx';
+
+import './play.css';
 
 import GameOver from './GameOver.jsx';
 import Certificate from './Certificate.jsx';
@@ -150,7 +150,7 @@ export default function PlayScreen({
   bestScore,
   setBestScore,
 }) {
-  const pipeWidth = window.innerHeight / 7.5;
+  const pipeWidth = window.innerHeight / 7;
   const [birdVelocity, setBirdVelocity] = useState(0);
   const [gravityAcceleration, setGravityAcceleration] = useState(1);
   const [birdAngle, setBirdAngle] = useState(0);
@@ -207,7 +207,6 @@ export default function PlayScreen({
           return newTop;
         });
         setBirdAngle(() => {
-          // Calculate the angle based on the velocity
           const angle = Math.min(90, Math.max(-30, birdVelocity * 2)); // Adjust these values as needed
           return angle;
         });
@@ -299,30 +298,16 @@ export default function PlayScreen({
             }, 250);
           }
 
-          pipes.forEach((pipe) => {
-            if (pipe.scoreUpdated === undefined) {
-              pipe.scoreUpdated = false;
-            }
+          // Score update logic
+          if (!pipe.scoreUpdated && birdLeft > pipeRight) {
+            setScore((prevScore) => prevScore + 1);
+            pipe.scoreUpdated = true;
+          }
 
-            if (
-              !gameOver &&
-              birdRight > pipeLeft + 5 &&
-              birdLeft < pipeRight + 5 &&
-              (birdTopPosition > topPipeBottom || birdBottom < bottomPipeTop)
-            ) {
-              if (!pipe.scoreUpdated) {
-                if (curr_dimensions.curr_width > 640) {
-                  setScore((prevScore) => prevScore + 0.5);
-                  pipe.scoreUpdated = true;
-                } else {
-                  setScore((prevScore) => prevScore + 1);
-                  pipe.scoreUpdated = true;
-                }
-              }
-            } else if (birdLeft > pipeRight) {
-              pipe.scoreUpdated = false;
-            }
-          });
+          // Reset scoreUpdated flag when pipe goes out of view (optional)
+          if (pipe.scoreUpdated && birdLeft > pipeRight + 5) {
+            pipe.scoreUpdated = false;
+          }
         });
       };
 
@@ -354,6 +339,7 @@ export default function PlayScreen({
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [birdTop, gameStarted, gameOver]);
+
 
   if (screen == 'play') {
     return (
