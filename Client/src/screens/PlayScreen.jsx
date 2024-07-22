@@ -330,7 +330,8 @@ export default function PlayScreen({
 
   const handleControl = () => {
     if (birdTop > 53 && gameStarted && !gameOver) {
-      setBirdTop((birdTop) => birdTop - 70);
+      setBirdVelocity(-10); // Set a negative velocity to simulate the jump
+      setBirdAngle(-30);
     }
   };
 
