@@ -3,35 +3,57 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Post No Bills Colombo';
-    src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
-}
-.font-postNoBills {
-    font-family: 'Post No Bills Colombo', sans-serif;
-    font-weight: 800;
+  font-family: 'Post No Bills Colombo';
+  src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
 }
 
-.font-inter{
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+  margin: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4D2E13;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8874F;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffa15f;
+}
+
+.font-postNoBills {
+  font-family: 'Post No Bills Colombo', sans-serif;
+  font-weight: 800;
+}
+
+.font-inter {
   font-family: "Inter", sans-serif;
   font-style: normal;
 }
 
-.countdown-text{
+.countdown-text {
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #311F04;
 }
-.body{
-background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("./src/assets/leaderBoard_image_bg.png");
+
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("/leaderBoard_image_bg.png");
 }
 
 .out {
-  background-image: url('./src/assets/leaderBoard_tree_board.png');
+  background-image: url('/leaderBoard_tree_board.png');
 }
 
 @media only screen and (max-width: 1024px) {
   .out {
-    background-image: url('./src/assets/leaderBoard_tree_board_sm.png');
+    background-image: url('/leaderBoard_tree_board_sm.png');
   }
 }
