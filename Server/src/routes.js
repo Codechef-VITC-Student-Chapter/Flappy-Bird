@@ -1,6 +1,18 @@
 import express from 'express';
 import GameUser from './gameUserModel.js';
 
+const updateAllRanks = async () => {
+  try {
+    const users = await GameUser.find().sort({ score: -1 });
+    for (let i = 0; i < users.length; i++) {
+      users[i].rank = i + 1;
+      await users[i].save();
+    }
+  } catch (error) {
+    console.error('Error updating ranks:', error);
+  }
+};
+
 const router = express.Router();
 
 router.post('/gameusers', async (req, res) => {
@@ -18,6 +30,8 @@ router.post('/gameusers', async (req, res) => {
 
     const newUser = new GameUser({ username, score, rank });
     await newUser.save();
+
+    await updateAllRanks();
 
     res.status(201).json({ message: 'Game user created successfully' });
   } catch (error) {
@@ -44,12 +58,13 @@ router.delete('/gameusers/:username', async (req, res) => {
 
 router.get('/gameusers', async (_req, res) => {
   try {
-    const gameUsers = await GameUser.find();
-    res.status(200).json(gameUsers);
+    const users = await GameUser.find().sort({ rank: 1 });
+    res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching game users:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 export default router;
