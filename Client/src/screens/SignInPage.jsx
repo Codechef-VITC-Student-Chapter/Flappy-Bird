@@ -4,6 +4,12 @@ import signb from "../assets/LoginPage_signboard1.png";
 import GoogleIcon from "../assets/google-icon.png"; 
 import AnonyPersonIcon from "../assets/anonymous-icon.png"; 
 
+// Authorization part via firebase
+import{doSignInWithGoogle} from "../../../Server/src/firebase/auth";
+import{useAuth} from "../../../Server/src/contexts/authContext"
+import { useState } from "react";
+
+
 function SignInPage({ setScreen, setStayAnonymous }) {
     const newSignin = () => {
         setScreen('auth');
@@ -14,7 +20,29 @@ function SignInPage({ setScreen, setStayAnonymous }) {
         setStayAnonymous(true);
     }
 
+    
+    const { userLoggedIn } = useAuth();
+    const [isSigningIn, setIsSigningIn] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    
+    const onSubmit = async (e) => {
+        e.preventDefault();
+    }
+    
+    const onGoogleSignIn = (e) => {
+        e.preventDefault();
+        if(!isSigningIn){
+            setIsSigningIn(true);
+            doSignInWithGoogle().catch(err => {
+                setIsSigningIn(false);
+            });
+        }
+    }
+
+
+
     return (
+        // {userLoggedIn && (<Navigate to={'/HomePage'} replace={true} />)}
         <div className="h-screen w-screen font-postNoBills 
         overflow-hidden bg-signin-bg bg-cover bg-center bg-no-repeat flex flex-col justify-between">
             <div className="relative flex flex-col items-center">
