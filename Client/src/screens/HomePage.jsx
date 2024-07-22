@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import logo from '/homePage_gameName.png';
 import button from '/homePage_startButton.png';
 
-const HomePage = ({ setScreen }) => {
+const HomePage = ({}) => {
+  const navigate = useNavigate();
   const handleScreen = (event) => {
     if (event.code === 'Space') {
-      setScreen('play');
+      navigate('/play');
     }
   };
 
@@ -17,7 +20,7 @@ const HomePage = ({ setScreen }) => {
   }, []);
 
   const handleClick = () => {
-    setScreen('play');
+    navigate('/play');
   };
 
   return (
@@ -26,7 +29,7 @@ const HomePage = ({ setScreen }) => {
       <img
         src={button}
         alt="button"
-        className="w-2/5 md:w-1/4 cursor-pointer pb-20"
+        // className="w-2/5 md:w-1/4 cursor-pointer pb-20"
         onClick={handleClick}
       />
       <p className="text-white text-2xl font-thin">
