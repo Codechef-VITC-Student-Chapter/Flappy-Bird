@@ -51,7 +51,7 @@ const GameOver = ({ setScreen, score, setScore, bestScore }) => {
         <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:justify-between md:absolute md:bottom-[50px] md:left-[50px] md:right-[50px]">
           <button
             className="bg-[#0E8E22] rounded-[20px] w-[121.2px] h-[23.61px] text-[11.04px] md:bg-[#0E8E22] md:w-[220px] md:h-[53.44px] text-white text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
-            onClick={() => setScreen('leaderboard')}
+            onClick={() => setScreen('signin')}
           >
             LEADERBOARD
           </button>

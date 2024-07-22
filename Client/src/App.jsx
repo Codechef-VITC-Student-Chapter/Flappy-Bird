@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 
-import HomePage from './screens/HomePage.jsx';
-import PlayScreen from './screens/PlayScreen.jsx';
-import GameOver from './screens/GameOver.jsx';
-import LeaderBoard from './screens/LeaderBoard.jsx';
-import Certificate from './screens/Certificate.jsx';
+import HomePage from "./screens/HomePage.jsx"
+import PlayScreen from "./screens/PlayScreen.jsx"
+import GameOver from "./screens/GameOver.jsx"
+import LeaderBoard from "./screens/LeaderBoard.jsx"
+import Certificate from "./screens/Certificate.jsx"
+import SignInPage from "./screens/SignInPage.jsx"
 
 import data from './data/data.jsx';
 
