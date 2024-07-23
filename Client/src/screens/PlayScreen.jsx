@@ -7,6 +7,7 @@ import pipe_l from '/Totem-l.png';
 import pipe_xl from '/Totem-xl.png';
 
 import './play.css';
+
 import Bird from './Objects/Bird';
 import Pipe from './Objects/Pipe';
 import PipeBottom from './Objects/PipeBottom';
