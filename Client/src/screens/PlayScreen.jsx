@@ -26,9 +26,10 @@ const obstacle_info = [
 function PlayScreen() {
   const floorRatio = 0.092;
   const gap = 150;
-  const availableHeight = window.innerHeight * (1 - floorRatio);
+  const availableHeight =
+    document.documentElement.clientHeight * (1 - floorRatio);
   const totem_height = (availableHeight - gap) / 2;
-  const birdLeft = window.innerWidth * 0.05;
+  const birdLeft = document.documentElement.clientWidth * 0.05;
   const gravity = 1;
   const obstacleCount = 4;
   const totemGap = 750;
