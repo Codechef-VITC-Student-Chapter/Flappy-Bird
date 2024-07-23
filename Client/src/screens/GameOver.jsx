@@ -5,7 +5,7 @@ import bg1 from '/gameOver_bg.png';
 import bg2 from '/gameOver_bg2.png';
 import signboard from '/signboard.png';
 
-const GameOver = ({ setScreen, score, setScore, bestScore }) => {
+const GameOver = ({ score, bestScore }) => {
   const navigate = useNavigate();
 
   return (
@@ -70,12 +70,6 @@ const GameOver = ({ setScreen, score, setScore, bestScore }) => {
             onClick={() => navigate('/Leaderboard')}
           >
             PLAY AGAIN
-          </button>
-          <button
-            className="bg-[#0E8E22] rounded-[20px] w-[121.2px] h-[23.61px] text-[11.04px] md:bg-[#0E8E22] md:w-[220px] md:h-[53.44px] text-white text-xs md:text-[23px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
-            onClick={() => setScreen('certificate')}
-          >
-            SHOW CERTIFICATE
           </button>
         </div>
       </div>

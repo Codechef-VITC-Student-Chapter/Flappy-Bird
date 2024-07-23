@@ -1,4 +1,4 @@
-const Pipe = ({ x, height, pipeWidth, pipeImg }) => {
+const Pipe = ({ x, height, pipeImg }) => {
   return (
     <img
       src={pipeImg}
@@ -8,7 +8,7 @@ const Pipe = ({ x, height, pipeWidth, pipeImg }) => {
         position: 'absolute',
         left: x,
         top: -5,
-        width: pipeWidth,
+        height: height,
         //border:"2px solid black",
         transform: 'rotate(180deg)',
       }}
