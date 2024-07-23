@@ -27,6 +27,7 @@ module.exports = {
         'min-w-600px':{'min':'600px'},
         '927px': '927px',
         '741px':'741px',
+        'custom-xs':'400px',
       },
       borderRadius: {
         'custom': '50px',
