@@ -18,7 +18,7 @@ const submitScore = async (username, score) => {
         rank,
       };
   
-      const response = await fetch('http://localhost:5000/api/gameusers', {
+      const response = await fetch('http://51.20.253.91:5000/api/gameusers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
