@@ -1,4 +1,4 @@
-const PipeBottom = ({ pipeImg, x, height, pipeWidth }) => {
+const PipeBottom = ({ pipeImg, x, height }) => {
   return (
     <img
       src={pipeImg}
@@ -8,7 +8,7 @@ const PipeBottom = ({ pipeImg, x, height, pipeWidth }) => {
         position: 'absolute',
         left: x,
         bottom: 70,
-        width: pipeWidth,
+        height: height,
         //border:"2px solid black"
       }}
       draggable={false}

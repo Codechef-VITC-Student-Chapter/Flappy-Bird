@@ -4,7 +4,7 @@
     }
 
     to {
-        background-position: 200% 0;
+        background-position: 1000% 0;
     }
 }
 
@@ -15,5 +15,5 @@
 }
 
 .bg-scroll {
-    animation: scrollBackground 30s linear infinite;
+    animation: scrollBackground 120s linear infinite;
 }
