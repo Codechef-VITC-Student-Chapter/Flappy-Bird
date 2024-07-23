@@ -21,8 +21,8 @@ function SignInPage({ setScreen, setStayAnonymous }) {
             <div className="relative flex flex-col items-center">
                 <img src={Note} className="z-[10] absolute w-[400px] md:w-[500px] lg:w-[650px] top-0 md:top-0 lg:-top-20" />
                 <div className="z-[20] absolute text-center pt-[80px] custom-xs:pt-[100px] md:pt-[120px] lg:pt-20 ">
-                    <p className="text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">Login to have your name</p>
-                    <p className="text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">on the leaderboard</p>
+                    <p className="font-fonts text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">Login to have your name</p>
+                    <p className="font-fonts text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">on the leaderboard</p>
                 </div>
             </div>
 
