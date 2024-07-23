@@ -228,7 +228,7 @@ export default function PlayScreen({
               'background-stuff w-full h-[100vh] flex align-middle justify-center relative min-h-screen bg-scroll'
             }
           >
-            {pipes.map((pipe, index) => (
+      {pipes.map((pipe, index) => (
               <Pipe
                 key={`top-${index}`}
                 x={pipe.x}
