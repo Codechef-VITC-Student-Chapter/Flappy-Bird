@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import bg1 from '/gameOver_bg.png';
@@ -7,6 +7,17 @@ import signboard from '/signboard.png';
 
 const GameOver = ({ score, bestScore }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === ' ' && !event.repeat) {
+        event.preventDefault();
+
+        location.reload();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div
@@ -67,7 +78,7 @@ const GameOver = ({ score, bestScore }) => {
           </button>
           <button
             className="bg-[#0E8E22] rounded-[20px] w-[121.2px] h-[23.61px] text-[11.04px] md:bg-[#0E8E22] md:w-[220px] md:h-[53.44px] text-white text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
-            onClick={() => navigate('/')}
+            onClick={() => location.reload()}
           >
             PLAY AGAIN
           </button>

@@ -93,7 +93,7 @@ function PlayScreen() {
       ob.shift();
       setObstacles(ob);
     }
-    if (obstacles[obstacles.length - 1].pos < distance + totemGap * 10) {
+    if (obstacles[obstacles.length - 1].pos - distance < totemGap * 10) {
       var ob = obstacles;
       setObstacles([
         ...ob,
@@ -123,7 +123,7 @@ function PlayScreen() {
   if (!birdDead) {
     return (
       <div
-        className="background-stuff bg-scroll w-[100vw] flex align-middle justify-center"
+        className="background-stuff bg-scroll w-[100vw] h-[100vh] flex align-middle justify-center overflow-hidden"
         style={{ height: document.documentElement.clientHeight }}
         onClick={clicked}
       >
