@@ -17,6 +17,7 @@ function CountDown({ count, setGameStopped }) {
       setGameStopped(false);
     }
   }, [countdown]);
+
   return (
     <div className="absolute w-full h-full font-postNoBills font-bold tracking-[3px] flex flex-col  align-middle bg-black bg-opacity-65">
       <div className="bg-transparent flex flex-col align-middle justify-center mt-[30%] sm:mt-[10%] ">

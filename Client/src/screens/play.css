@@ -12,6 +12,7 @@
     background-image: url('../assets/playBackground.png');
     background-repeat: repeat-x;
     background-size: cover;
+    position: relative;
 }
 
 .bg-scroll {
