@@ -113,6 +113,7 @@ function PlayScreen() {
                 totem_height)) ||
       birdTop > availableHeight - 60
     ) {
+      localStorage.setItem("currentScore",score);
       setGameStopped(true);
       if (score > bestScore) {
         setBestScore(score);
