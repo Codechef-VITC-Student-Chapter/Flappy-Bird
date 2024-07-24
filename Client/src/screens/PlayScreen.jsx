@@ -120,7 +120,7 @@ function PlayScreen() {
       setBirdDead(true);
     }
   }, [distance]);
-  if (true) {
+  if (!birdDead) {
     return (
       <div
         className="background-stuff bg-scroll w-[100vw] h-[100vh] flex align-middle justify-center overflow-hidden"
