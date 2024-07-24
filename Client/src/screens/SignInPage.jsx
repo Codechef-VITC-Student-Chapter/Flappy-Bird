@@ -18,7 +18,7 @@ const submitScore = async (username, score) => {
         rank,
       };
   
-      const response = await fetch('http://51.20.253.91:5000/api/gameusers', {
+      const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,12 +37,12 @@ const submitScore = async (username, score) => {
     }
   };
 
-const SignInPage = ({ setScreen, setStayAnonymous }) => {
+const SignInPage = ({ setStayAnonymous }) => {
     const navigate = useNavigate();
 
 
-    const [isSigningIn, setIsSigningIn] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    let [isSigningIn, setIsSigningIn] = useState(false);
+    let [errorMessage, setErrorMessage] = useState('');
 
     const handleSignIn = () => {
         setIsSigningIn(true);
@@ -50,14 +50,14 @@ const SignInPage = ({ setScreen, setStayAnonymous }) => {
             .then(async (result) => {
                 const nameArr = result.user.displayName.split(" ");
                 const name = nameArr[0]+" "+nameArr[1];
-                const score = localStorage.getItem("CurrentScore");
+                const score = localStorage.getItem("currentScore");
                 console.log('User info:', name);
                 await submitScore(name,score);
                 navigate("/leaderboard");
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                errorMessage = error.message;
                 console.log('Error code:', errorCode);
                 console.log('Error message:', errorMessage);
                 setErrorMessage(errorMessage);
@@ -65,7 +65,7 @@ const SignInPage = ({ setScreen, setStayAnonymous }) => {
             });
     };
 
-    const handleSignOut = () => {
+    /*const handleSignOut = () => {
         signOut(auth)
             .then(() => {
                 console.log('User signed out');
@@ -73,11 +73,12 @@ const SignInPage = ({ setScreen, setStayAnonymous }) => {
             .catch((error) => {
                 console.log('Sign out error:', error);
             });
-    };
+    };*/
 
     const newAnonymous = async () => {
         const name = getRandomName();
-        const score = localStorage.getItem("CurrentScore");
+        const score = localStorage.getItem("currentScore");
+        console.log("Submit Data: ",{name,score});
         await submitScore(name,score);
         navigate("/leaderboard");
         setStayAnonymous(true);

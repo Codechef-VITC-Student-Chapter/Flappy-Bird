@@ -13,7 +13,7 @@ const LeaderBoard = ({ setScreen, players }) => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await fetch('http://51.20.253.91:5000/api/gameusers');
+        const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers');
         const data = await response.json();
         const sortedPlayers = data.sort((a, b) => a.rank - b.rank);
         setPlayers(sortedPlayers);
