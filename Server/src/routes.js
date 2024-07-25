@@ -1,39 +1,30 @@
 import express from 'express';
 import GameUser from './gameUserModel.js';
 
-const updateAllRanks = async () => {
-  try {
-    const users = await GameUser.find().sort({ score: -1 });
-    for (let i = 0; i < users.length; i++) {
-      users[i].rank = i + 1;
-      await users[i].save();
-    }
-  } catch (error) {
-    console.error('Error updating ranks:', error);
-  }
-};
 
 const router = express.Router();
 
 router.post('/gameusers', async (req, res) => {
-  const { username, score, rank } = req.body;
+  const { username, score } = req.body;
 
-  if (!username || !score || !rank) {
+  if (!username || !score) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     const existingUser = await GameUser.findOne({ username });
     if (existingUser) {
-      return res.status(400).json({ error: 'User already exists' });
+      if (score > existingUser.score) {
+        await GameUser.updateOne({ username }, { score });
+        return res.status(200).json({ message: 'User score updated successfully' });
+      } else {
+        return res.status(200).json({ message: 'New score is not higher than existing score' });
+      }
+    }else{
+      const newUser = new GameUser({ username, score});
+      await newUser.save();
+      res.status(201).json({ message: 'Game user created successfully' });
     }
-
-    const newUser = new GameUser({ username, score, rank });
-    await newUser.save();
-
-    await updateAllRanks();
-
-    res.status(201).json({ message: 'Game user created successfully' });
   } catch (error) {
     console.error('Error creating game user:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -58,7 +49,7 @@ router.delete('/gameusers/:username', async (req, res) => {
 
 router.get('/gameusers', async (_req, res) => {
   try {
-    const users = await GameUser.find().sort({ rank: 1 });
+    const users = await GameUser.find().sort({ score: -1 });
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching game users:', error);

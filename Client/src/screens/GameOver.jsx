@@ -5,17 +5,41 @@ import bg1 from '/gameOver_bg.png';
 import bg2 from '/gameOver_bg2.png';
 import signboard from '/signboard.png';
 
-const GameOver = ({ score, bestScore, username }) => {
+const GameOver = ({ score, bestScore, username, resetGame}) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const submitScore = async (username, score) => {
+    try {
+      const data = { username, score };
+      console.log("started fetch");
+      const response = await fetch('http://localhost:5000/api/gameusers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      console.log("completed fetch");
+  
+      if (!response.ok) throw new Error('Failed to submit game data');
+  
+      const result = await response.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error('Error submitting game data:', error);
+    }
+  };
+
+    useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === ' ' && !event.repeat) {
         event.preventDefault();
-        location.reload();
+        resetGame();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
@@ -84,7 +108,7 @@ const GameOver = ({ score, bestScore, username }) => {
         <div className="flex flex-col space-y-2 mt-5 md:space-y-0 md:flex-row md:justify-between md:absolute md:bottom-[50px] md:left-[50px] md:right-[50px]">
           <button
             className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px] md:ml-8"
-            onClick={() => navigate('/SignIn')}
+            onClick={async () => (localStorage.getItem("isLoggedIn") === "true")?(await submitScore(username,bestScore).then(navigate('/Leaderboard'))):navigate('/SignIn')}
           >
             LEADERBOARD
           </button>
@@ -95,8 +119,9 @@ const GameOver = ({ score, bestScore, username }) => {
         </div>
           <button
             className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
-            onClick={() => location.reload()}
+            onClick={() => {resetGame();}}
           >
+            
             PLAY AGAIN
           </button>
         </div>
