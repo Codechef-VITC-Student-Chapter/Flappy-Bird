@@ -12,7 +12,7 @@ const GameOver = ({ score, bestScore, username, resetGame}) => {
     try {
       const data = { username, score };
       console.log("started fetch");
-      const response = await fetch('http://localhost:5000/api/gameusers', {
+      const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

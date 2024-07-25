@@ -13,7 +13,7 @@ const LeaderBoard = ({ stayAnonymous, isLoggedIn,}) => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/gameusers');
+        const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers');
         const data = await response.json();
         setPlayers(data);
       } catch (error) {
