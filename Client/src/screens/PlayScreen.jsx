@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useGameContext } from '../contexts/gameContext';
 
 import pipe_xs from '/Totem-xs.png';
 import pipe_s from '/Totem-s.png';
@@ -15,6 +16,13 @@ import ScoreBoard from './Objects/ScoreBoard';
 import CountDown from './Objects/CountDown';
 import GameOver from './GameOver';
 
+import getRandomName from '../utils/utils';
+
+
+const playerName = getRandomName();
+
+
+
 const obstacle_info = [
   { name: 'xs', img: pipe_xs, height: 4 / 6 },
   { name: 's', img: pipe_s, height: 5 / 6 },
@@ -24,6 +32,7 @@ const obstacle_info = [
 ];
 
 function PlayScreen() {
+  const { setPlayerName, setCurrentScore } = useGameContext();
   const floorRatio = 0.092;
   const gap = 150;
   const availableHeight =
@@ -113,11 +122,12 @@ function PlayScreen() {
                 totem_height)) ||
       birdTop > availableHeight - 60
     ) {
-      localStorage.setItem("currentScore",score);
       setGameStopped(true);
       if (score > bestScore) {
         setBestScore(score);
       }
+      setPlayerName(playerName);
+      setCurrentScore(score);
       setBirdDead(true);
     }
   }, [distance]);
@@ -162,7 +172,7 @@ function PlayScreen() {
       </div>
     );
   } else {
-    return <GameOver score={score} bestScore={bestScore} />;
+    return <GameOver score={score} bestScore={bestScore} username={playerName}/>;
   }
 }
 

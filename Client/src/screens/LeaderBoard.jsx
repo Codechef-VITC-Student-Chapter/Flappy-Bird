@@ -6,7 +6,7 @@ import crownGold from '/leaderBoard_crown_r1.png';
 import crownSilver from '/leaderBoard_crown_r2.png';
 import crownBronze from '/leaderBoard_crown_r3.png';
 
-const LeaderBoard = ({ setScreen, players }) => {
+const LeaderBoard = () => {
   const navigate = useNavigate();
   const [playersData, setPlayers] = useState([]);
 
@@ -48,7 +48,7 @@ const LeaderBoard = ({ setScreen, players }) => {
 
         <ul className="list-none p-0 w-full">
           <div className="flex justify-center gap-20">
-            {players[2] && (
+            {playersData[2] && (
               <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item r3 w-180px border border-black tracking-custom-spacing h-150px mt-130px rounded-[15px_50px_50px] bg-[#862220] relative">
                 <span className="font-bold relative text-center min-w-[70px]">
                   <img
@@ -68,7 +68,7 @@ const LeaderBoard = ({ setScreen, players }) => {
               </li>
             )}
 
-            {players[0] && (
+            {playersData[0] && (
               <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item w-custom-width rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl mt-custom-margin-top border border-black tracking-custom-spacing bg-[gold] relative">
                 <span className="font-bold txt1 relative text-center min-w-[80px]">
                   <img
@@ -88,7 +88,7 @@ const LeaderBoard = ({ setScreen, players }) => {
               </li>
             )}
 
-            {players[1] && (
+            {playersData[1] && (
               <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 bg-silver top-three-item w-200px h-150px mt-110px border border-black tracking-1px bg-[silver] relative rounded-[15px_50px_50px_50px]">
                 <span className="font-bold relative text-center min-w-[70px]">
                   <img
@@ -157,7 +157,7 @@ const LeaderBoard = ({ setScreen, players }) => {
 
         <ul className="list-none p-0 w-full mt[-10px]">
           <div className="flex justify-center gap-10">
-            {players[0] && (
+            {playersData[0] && (
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[gold] w-[80%] mt-[35px] p-0 relative">
                 <img
                   src={crownGold}
@@ -178,7 +178,7 @@ const LeaderBoard = ({ setScreen, players }) => {
           </div>
 
           <div className="flex justify-center gap-5 mt-[-12px]">
-            {players[2] && (
+            {playersData[2] && (
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[#862220] w-[30%] mt-[65px] p-[3px] text-white relative">
                 <img
                   src={crownBronze}
@@ -197,7 +197,7 @@ const LeaderBoard = ({ setScreen, players }) => {
               </li>
             )}
 
-            {players[1] && (
+            {playersData[1] && (
               <li className="flex flex-col items-center justify-between border-b last:border-b-0 rounded-3xl top-three-item rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl border border-black tracking-custom-spacing bg-[silver] w-[40%] mt-[45px] p-[3px] relative">
                 <img
                   src={crownSilver}
