@@ -2,14 +2,15 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider,signInWithPopup, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDLVc3eY_nDJIN456OtwK-BNzmLZPGV6xI",
-  authDomain: "flappy-bird-73f3e.firebaseapp.com",
-  projectId: "flappy-bird-73f3e",
-  storageBucket: "flappy-bird-73f3e.appspot.com",
-  messagingSenderId: "280886096397",
-  appId: "1:280886096397:web:d7966ad1c7bd2e52979b44",
-  measurementId: "G-Q7LT2VR698"
+  apiKey: "AIzaSyCe9jnQ_hwakzp0xQXXxcp6kdpr5OOY3mk",
+  authDomain: "flappy-bird-codechef.firebaseapp.com",
+  projectId: "flappy-bird-codechef",
+  storageBucket: "flappy-bird-codechef.appspot.com",
+  messagingSenderId: "292086757103",
+  appId: "1:292086757103:web:9b752cc035f33b52810d1a",
+  measurementId: "G-36K0VEV71M"
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
