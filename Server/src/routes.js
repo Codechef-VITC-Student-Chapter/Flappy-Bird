@@ -49,7 +49,7 @@ router.delete('/gameusers/:username', async (req, res) => {
 
 router.get('/gameusers', async (_req, res) => {
   try {
-    const users = await GameUser.find().sort({ score: -1 });
+    const users = await GameUser.find().sort({ score: -1 }).limit(100);
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching game users:', error);
