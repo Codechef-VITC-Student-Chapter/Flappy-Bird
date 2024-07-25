@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { auth, provider, signInWithPopup, signOut } from '../../../Server/src/firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useGameContext } from '../contexts/gameContext';
 
 import Note from "../assets/LoginPage_board.png";
 import signb from "../assets/LoginPage_signboard1.png";
 import GoogleIcon from "../assets/google-icon.png";
 import AnonyPersonIcon from "../assets/anonymous-icon.png";
 import getRandomName from "../utils/utils";
+
 
 
 const submitScore = async (username, score) => {
@@ -40,17 +42,20 @@ const submitScore = async (username, score) => {
 const SignInPage = ({ setStayAnonymous }) => {
     const navigate = useNavigate();
 
+    const { playerName, currentScore } = useGameContext();
 
     let [isSigningIn, setIsSigningIn] = useState(false);
     let [errorMessage, setErrorMessage] = useState('');
+    
+    let name = playerName;
+    let score = currentScore; 
 
     const handleSignIn = () => {
         setIsSigningIn(true);
         signInWithPopup(auth, provider)
             .then(async (result) => {
                 const nameArr = result.user.displayName.split(" ");
-                const name = nameArr[0]+" "+nameArr[1];
-                const score = localStorage.getItem("currentScore");
+                name = nameArr[0]+" "+nameArr[1];
                 console.log('User info:', name);
                 await submitScore(name,score);
                 navigate("/leaderboard");
@@ -76,8 +81,6 @@ const SignInPage = ({ setStayAnonymous }) => {
     };*/
 
     const newAnonymous = async () => {
-        const name = getRandomName();
-        const score = localStorage.getItem("currentScore");
         console.log("Submit Data: ",{name,score});
         await submitScore(name,score);
         navigate("/leaderboard");
