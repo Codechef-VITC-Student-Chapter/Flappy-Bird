@@ -89,12 +89,12 @@ const GameOver = ({ score, bestScore, username }) => {
             LEADERBOARD
           </button>
           <div className="hidden md:flex w-[450px] h-[40px] rounded-[50px] items-center justify-center mb-2">
-          <p className="text-amber-950 text-[45px] truncate w-full px-2">
+          <p className="text-amber-950 text-[35px] mx-2 truncate w-full px-2">
           User :  {username}
           </p>
         </div>
           <button
-            className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
+            className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-3 md:py-3 md:rounded-[40px]"
             onClick={() => location.reload()}
           >
             PLAY AGAIN

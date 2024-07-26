@@ -7,8 +7,6 @@ import pipe_m from '/Totem-m.png';
 import pipe_l from '/Totem-l.png';
 import pipe_xl from '/Totem-xl.png';
 
-import './play.css';
-
 import Bird from './Objects/Bird';
 import Pipe from './Objects/Pipe';
 import PipeBottom from './Objects/PipeBottom';
@@ -134,7 +132,7 @@ function PlayScreen() {
   if (!birdDead) {
     return (
       <div
-        className="background-stuff bg-scroll w-[100vw] h-[100vh] flex align-middle justify-center overflow-hidden"
+        className="bg-background-stuff bg-scroll w-[100vw] h-[100vh] flex align-middle justify-center overflow-hidden bg-repeat-x bg-cover relative"
         style={{ height: document.documentElement.clientHeight }}
         onClick={clicked}
       >

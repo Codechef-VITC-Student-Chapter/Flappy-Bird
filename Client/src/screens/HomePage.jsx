@@ -27,7 +27,7 @@ const HomePage = ({}) => {
     <div className="flex flex-col justify-center items-center h-screen bg-flappybird-mob sm:bg-flappybird-desk absolute min-h-screen inset-0 bg-cover bg-center">
       <img src={logo} alt="logo" className="w-96 md:w-1/2 pb-20 " />
       <img
-      className='w-48 lg:w-80 md:w-56'
+      className='w-44 lg:w-80 md:w-56'
         src={button}
         alt="button"
         // className="w-2/5 md:w-1/4 cursor-pointer pb-20"

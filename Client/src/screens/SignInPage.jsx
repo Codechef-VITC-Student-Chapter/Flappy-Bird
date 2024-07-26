@@ -3,10 +3,10 @@ import { auth, provider, signInWithPopup, signOut } from '../../../Server/src/fi
 import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../contexts/gameContext';
 
-import Note from "../assets/LoginPage_board.png";
-import signb from "../assets/LoginPage_signboard1.png";
-import GoogleIcon from "../assets/google-icon.png";
-import AnonyPersonIcon from "../assets/anonymous-icon.png";
+import Note from "/LoginPage_board.png";
+import signb from "/LoginPage_signboard1.png";
+import GoogleIcon from "/google-icon.png";
+import AnonyPersonIcon from "/anonymous-icon.png";
 import getRandomName from "../utils/utils";
 
 
