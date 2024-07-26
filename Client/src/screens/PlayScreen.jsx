@@ -96,7 +96,15 @@ function PlayScreen({}) {
   useEffect(() => {
     if (!gameStopped) {
       const always = setInterval(() => {
-        setDistance((prevDistance) => prevDistance + 10 + prevDistance / 1000);
+        var amount = 0;
+        if (document.documentElement.availableWidth > 500) {
+          amount = 10;
+        } else {
+          amount = 5;
+        }
+        setDistance(
+          (prevDistance) => prevDistance + amount + prevDistance / 1000
+        );
         setVelocity((prevVelocity) => prevVelocity + gravity);
       }, 25);
 
