@@ -18,10 +18,7 @@ import GameOver from './GameOver';
 
 import getRandomName from '../utils/utils';
 
-
 const playerName = getRandomName();
-
-
 
 const obstacle_info = [
   { name: 'xs', img: pipe_xs, height: 4 / 6 },
@@ -81,7 +78,7 @@ function PlayScreen() {
   useEffect(() => {
     if (!gameStopped) {
       const always = setInterval(() => {
-        setDistance((prevDistance) => prevDistance + 10);
+        setDistance((prevDistance) => prevDistance + 10 + prevDistance / 1000);
         setVelocity((prevVelocity) => prevVelocity + gravity);
       }, 25);
 
@@ -172,7 +169,9 @@ function PlayScreen() {
       </div>
     );
   } else {
-    return <GameOver score={score} bestScore={bestScore} username={playerName}/>;
+    return (
+      <GameOver score={score} bestScore={bestScore} username={playerName} />
+    );
   }
 }
 
