@@ -16,13 +16,6 @@ import ScoreBoard from './Objects/ScoreBoard';
 import CountDown from './Objects/CountDown';
 import GameOver from './GameOver';
 
-import getRandomName from '../utils/utils';
-
-
-const playerName = getRandomName();
-
-
-
 const obstacle_info = [
   { name: 'xs', img: pipe_xs, height: 4 / 6 },
   { name: 's', img: pipe_s, height: 5 / 6 },
@@ -31,8 +24,11 @@ const obstacle_info = [
   { name: 'xl', img: pipe_xl, height: 8 / 6 },
 ];
 
-function PlayScreen() {
-  const { setPlayerName, setCurrentScore } = useGameContext();
+function PlayScreen({}) {
+  const { setCurrentScore, playerName, currentScore } = useGameContext();
+
+  const uname = (localStorage.getItem("isLoggedIn") === "true")?localStorage.getItem("UserInfo"):playerName;
+
   const floorRatio = 0.092;
   const gap = 150;
   const availableHeight =
@@ -60,6 +56,22 @@ function PlayScreen() {
 
   const score = Math.floor(distance / totemGap);
 
+  const resetGame = () => {
+    setDistance(0);
+    setObstacles([
+      { index: 2, pos: totemGap },
+      { index: 1, pos: totemGap * 2 },
+      { index: 3, pos: totemGap * 3 },
+      { index: 4, pos: totemGap * 4 },
+      { index: 0, pos: totemGap * 5 },
+    ]);
+    setBirdDead(false);
+    setBirdTop(availableHeight * 0.5);
+    setVelocity(0);
+    setAngle(0);
+    setGameStopped(true);
+  };
+
   const clicked = () => {
     if (birdTop > 58) {
       setVelocity(-10);
@@ -71,11 +83,14 @@ function PlayScreen() {
     const handleKeyDown = (event) => {
       if (event.key === ' ' && !event.repeat) {
         event.preventDefault();
-
         clicked();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   useEffect(() => {
@@ -125,12 +140,13 @@ function PlayScreen() {
       setGameStopped(true);
       if (score > bestScore) {
         setBestScore(score);
+        setCurrentScore(score);
+        console.log("best: "+bestScore+"Current: "+currentScore);
       }
-      setPlayerName(playerName);
-      setCurrentScore(score);
       setBirdDead(true);
     }
   }, [distance]);
+
   if (!birdDead) {
     return (
       <div
@@ -172,7 +188,7 @@ function PlayScreen() {
       </div>
     );
   } else {
-    return <GameOver score={score} bestScore={bestScore} username={playerName}/>;
+    return <GameOver score={score} bestScore={bestScore} username={uname} resetGame={resetGame} />;
   }
 }
 
