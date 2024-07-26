@@ -49,7 +49,7 @@ const LeaderBoard = () => {
         <ul className="list-none p-0 w-full">
           <div className="flex justify-center gap-20">
             {playersData[2] && (
-              <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item r3 w-180px border border-black tracking-custom-spacing h-150px mt-130px rounded-[15px_50px_50px] bg-[#862220] relative">
+              <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item r3 w-180px border border-black tracking-custom-spacing h-150px mt-130px rounded-[15px_50px_50px] bg-[#862220] relative over ">
                 <span className="font-bold relative text-center min-w-[70px]">
                   <img
                     src={crownBronze}
@@ -57,7 +57,7 @@ const LeaderBoard = () => {
                     className="absolute crown3 h-80px top-[-45px] left-[-90px]"
                   />
                 </span>
-                <span className="text-center txt3 name-span text-custom-27px font-extrabold text-white">
+                <span className="text-center name-span text-[100%] font-extrabold text-white ">
                   {!(playersData[2] === undefined)
                     ? playersData[2].username
                     : ''}
@@ -69,7 +69,7 @@ const LeaderBoard = () => {
             )}
 
             {playersData[0] && (
-              <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item w-custom-width rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl mt-custom-margin-top border border-black tracking-custom-spacing bg-[gold] relative">
+              <li className="flex flex-col items-center justify-between py-2 border-b last:border-b-0 rounded-3xl px-6 mb-4 top-three-item w-custom-width rounded-tl-custom-tl rounded-br-custom-br-tr rounded-tr-custom-br-tr rounded-bl-custom-bl mt-custom-margin-top border border-black tracking-custom-spacing bg-[gold] relative ">
                 <span className="font-bold txt1 relative text-center min-w-[80px]">
                   <img
                     src={crownGold}
@@ -109,7 +109,7 @@ const LeaderBoard = () => {
             )}
           </div>
 
-          <div className="list w-[62%] text-white mx-auto max-h-[calc(100vh-500px)] overflow-y-auto mt-10">
+          <div className="list w-[62%] lg:w-[80%] text-white mx-auto max-h-[calc(100vh-500px)] overflow-y-auto mt-10">
             {playersData.slice(3).map((player, index) => (
               <li
                 key={index + 3}
