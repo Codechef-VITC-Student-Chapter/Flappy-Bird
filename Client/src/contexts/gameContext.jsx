@@ -1,9 +1,11 @@
 import React, { createContext, useState, useContext } from 'react';
+import getRandomName from '../utils/utils';
 
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  const [playerName, setPlayerName] = useState('');
+  const defaultName = getRandomName();
+  const [playerName, setPlayerName] = useState(defaultName);
   const [currentScore, setCurrentScore] = useState(0);
 
   return (

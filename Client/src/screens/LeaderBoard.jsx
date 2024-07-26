@@ -6,7 +6,7 @@ import crownGold from '/leaderBoard_crown_r1.png';
 import crownSilver from '/leaderBoard_crown_r2.png';
 import crownBronze from '/leaderBoard_crown_r3.png';
 
-const LeaderBoard = () => {
+const LeaderBoard = ({ stayAnonymous, isLoggedIn,}) => {
   const navigate = useNavigate();
   const [playersData, setPlayers] = useState([]);
 
@@ -15,8 +15,7 @@ const LeaderBoard = () => {
       try {
         const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers');
         const data = await response.json();
-        const sortedPlayers = data.sort((a, b) => a.rank - b.rank);
-        setPlayers(sortedPlayers);
+        setPlayers(data);
       } catch (error) {
         console.error('Error fetching players:', error);
       }
@@ -28,7 +27,6 @@ const LeaderBoard = () => {
   console.log(playersData);
   return (
     <div className="body leaderboard-bg m-0 p-0 overflow-x-hidden bg-cover bg-no-repeat lg:bg-[100%_100%] flex justify-center items-center min-h-screen w-full overflow-x-hidden">
-      {/* Div for larger screens */}
       <div className="body leaderboard-bg m-0 p-0 overflow-x-visible hidden bg-cover bg-no-repeat lg:flex w-full max-w-[1200px] items-center flex-col p-6 rounded-3xl shadow-lg out bg-contain bg-no-repeat bg-center box-border max-w-[100%] w-[100%] mx-auto min-h-screen big">
         <div className="flex items-center t1 mt-[-30px]">
           <img

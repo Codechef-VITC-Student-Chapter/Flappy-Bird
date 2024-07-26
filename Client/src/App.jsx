@@ -12,7 +12,7 @@ import { GameProvider } from './contexts/gameContext.jsx';
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [stayAnonymous, setStayAnonymous] = useState(false);
+
 
   return (
     <>
@@ -39,7 +39,7 @@ function App() {
             />
             <Route
               path="/SignIn"
-              element={<SignInPage setStayAnonymous={setStayAnonymous} />}
+              element={<SignInPage />}
             />
           </Routes>
         </BrowserRouter>
