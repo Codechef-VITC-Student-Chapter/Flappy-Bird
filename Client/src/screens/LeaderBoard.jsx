@@ -102,7 +102,7 @@ const LeaderBoard = ({ stayAnonymous, isLoggedIn }) => {
             )}
           </div>
 
-          <div className="list w-[62%] lg:w-[80%] text-white mx-auto max-h-[calc(100vh-500px)] overflow-y-auto mt-10">
+          <div className="list w-[62%] lg:w-[75%] text-white mx-auto max-h-[calc(100vh-500px)] overflow-y-auto mt-10">
             {playersData.slice(3).map((player, index) => (
               <li
                 key={index + 3}
@@ -202,7 +202,7 @@ const LeaderBoard = ({ stayAnonymous, isLoggedIn }) => {
             )}
           </div>
 
-          <div className="list w-[78%] text-white mx-auto max-h-[calc(100vh-450px)] overflow-y-auto mt-5">
+          <div className="list w-[76%] text-white mx-auto max-h-[calc(100vh-450px)] overflow-y-auto mt-5">
             {playersData.slice(3).map((player, index) => (
               <li
                 key={index + 3}
