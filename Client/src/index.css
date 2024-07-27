@@ -50,13 +50,23 @@
 
 .out {
   background-image: url('/leaderBoard_tree_board.png');
-  background-size: cover;
-  background-position: bottom;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media only screen and (max-width: 1024px) {
   .out {
     background-image: url('/leaderBoard_tree_board_sm.png');
-    background-position: top;
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top: 20%;
   }
+}
+
+.name-span {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
