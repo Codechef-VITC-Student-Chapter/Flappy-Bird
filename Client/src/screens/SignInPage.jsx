@@ -74,16 +74,16 @@ const SignInPage = ({ setStayAnonymous, setLoggedIn }) => {
     <div className="h-screen w-screen font-postNoBills overflow-hidden bg-signin-bg bg-cover bg-center bg-no-repeat flex flex-col justify-between">
       <div className="relative flex flex-col items-center">
         <img src={Note} className="z-[10] absolute w-[400px] md:w-[500px] lg:w-[650px] top-0 md:top-0 lg:-top-20" />
-        <div className="z-[20] absolute text-center pt-[80px] custom-xs:pt-[100px] md:pt-[120px] lg:pt-20 ">
-          <p className="font-fonts text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">Login to have your name</p>
-          <p className="font-fonts text-[25px] custom-xs:text-[35px] md:text-[40px] lg:text-[45px] text-white">on the leaderboard</p>
+        <div className="z-[20] absolute text-center pt-[100px]  md:pt-[130px] lg:pt-90px ">
+          <p className="font-fonts text-[20px]  md:text-[30px] lg:text-[40px] text-white">Login to have your name</p>
+          <p className="font-fonts text-[20px]  md:text-[30px] lg:text-[40px] text-white">on the leaderboard</p>
         </div>
       </div>
 
       <div className="relative flex justify-center items-center h-screen bottom-0">
-        <img src={signb} className="absolute z-[10] bottom-0 md:top-[335px] w-[350px] md:w-[400px] lg:w-[400px] h-[390px] md:h-[440px] lg:h-[440px]" alt="Signboard" />
+        <img src={signb} className="absolute z-[10] bottom-0 md:top-[535px] w-[350px] md:w-[400px] lg:w-[400px] h-[390px] md:h-[440px] lg:h-[440px]" alt="Signboard" />
         
-        <div className="absolute bottom-[285px] md:top-[388px] lg:bottom-[310px] flex justify-center w-full">
+        <div className="absolute bottom-[285px] md:top-[580px] lg:bottom-[310px] flex justify-center w-full">
           <button
             id="google-auth-btn"
             className="z-[20] h-[60px] w-[240px] md:h-[70px] md:w-[310px] lg:w-[310px] bg-yellow-400 rounded-[50px] flex items-center justify-center px-4 hover:bg-green-800 hover:text-white"
@@ -96,7 +96,7 @@ const SignInPage = ({ setStayAnonymous, setLoggedIn }) => {
           </button>
         </div>
 
-        <div className="absolute bottom-[145px] md:top-[548px] lg:bottom-[35px] flex justify-center w-full">
+        <div className="absolute bottom-[145px] md:top-[760px] lg:bottom-[35px] flex justify-center w-full">
           <button
             className="z-[20] h-[60px] w-[240px] md:h-[70px] md:w-[310px] lg:w-[310px] bg-yellow-400 rounded-[50px] flex items-center justify-center px-4 hover:bg-green-800 hover:text-white"
             onClick={newAnonymous}
