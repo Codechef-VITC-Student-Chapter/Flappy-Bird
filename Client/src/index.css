@@ -55,6 +55,20 @@
   background-repeat: no-repeat;
 }
 
+.bg-scroll {
+  animation: scrollBackground 120s linear infinite;
+}
+
+@keyframes scrollBackground {
+  from {
+      background-position: 0 0;
+  }
+
+  to {
+      background-position: 1000% 0;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .out {
     background-image: url('/leaderBoard_tree_board_sm.png');
