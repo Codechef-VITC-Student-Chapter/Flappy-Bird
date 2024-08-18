@@ -1,21 +1,51 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import bg1 from '/gameOver_bg.png';
-import bg2 from '/gameOver_bg2.png';
-import signboard from '/signboard.png';
+import bg1 from '../assets/gameOver_bg.png'; // Import background image for large screens
+import bg2 from '../assets/gameOver_bg2.png'; // Import background image for small screens
+import signboard from '../assets/signboard.png'; // Import image for the signboard
 
-const GameOver = ({ score, bestScore, username }) => {
-  const navigate = useNavigate();
 
-  useEffect(() => {
+// The GameOver component displays the game over screen with the user's score, best score, and buttons for actions
+
+const GameOver = ({ score, bestScore, username, resetGame}) => {
+  const navigate = useNavigate();// Hook for programmatic navigation
+
+  // Function to submit the score to the API
+
+  const submitScore = async (username, score) => {
+    try {
+      const data = { username, score };// Prepare data to send to the API
+      console.log("started fetch");// Log fetch initiation
+      const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),// Convert data to JSON format
+      });
+      console.log("completed fetch");// Log fetch completion
+  
+      if (!response.ok) throw new Error('Failed to submit game data');// Check for errors
+  
+      const result = await response.json();// Parse response data
+      console.log(result.message);// Log success message from API
+    } catch (error) {
+      console.error('Error submitting game data:', error);
+    }
+  };
+
+  // Effect hook to add and remove keydown event listener for spacebar
+    useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === ' ' && !event.repeat) {
-        event.preventDefault();
-        location.reload();
+      if (event.key === ' ' && !event.repeat) {// Check if the spacebar key is pressed
+        event.preventDefault(); // Prevent the default action
+        resetGame();// Call the function to restart the game
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown); // Add event listener for keydown
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
@@ -83,20 +113,23 @@ const GameOver = ({ score, bestScore, username }) => {
         {/* Buttons section */}
         <div className="flex flex-col space-y-2 mt-5 md:space-y-0 md:flex-row md:justify-between md:absolute md:bottom-[50px] md:left-[50px] md:right-[50px]">
           <button
+
             className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px] md:ml-8"
-            onClick={() => navigate('/SignIn')}
+            onClick={async () => (localStorage.getItem("isLoggedIn") === "true")?(await submitScore(username,bestScore).then(navigate('/Leaderboard'))):navigate('/SignIn')}
+
           >
             LEADERBOARD
           </button>
           <div className="hidden md:flex w-[450px] h-[40px] rounded-[50px] items-center justify-center mb-2">
-          <p className="text-amber-950 text-[45px] truncate w-full px-2">
+          <p className="text-amber-950 text-[35px] mx-2 truncate w-full px-2">
           User :  {username}
           </p>
         </div>
           <button
             className="bg-[#DCC131] rounded-[20px] w-[121.2px] h-[23.61px] text-black text-[11.04px] md:bg-[#DCC131] md:w-[220px] md:h-[53.44px] text-black text-xs md:text-[24px] py-1 px-3 md:px-6 md:py-3 md:rounded-[40px]"
-            onClick={() => location.reload()}
+            onClick={() => {resetGame();}}
           >
+            
             PLAY AGAIN
           </button>
         </div>

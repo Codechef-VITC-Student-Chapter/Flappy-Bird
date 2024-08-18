@@ -1,3 +1,5 @@
+// Array of animal and bird names
+
 const animalsAndBirds = [
     'Lion',
     'Elephant',
@@ -83,14 +85,26 @@ const animalsAndBirds = [
     'Exotic',
     'Scavenging',
   ];
+  // Function to generate a random name
+
 
 const getRandomName = () => {
+      // Randomly select an adjective from the adjectives array
+
     const randomAdjective =
       adjectives[Math.floor(Math.random() * adjectives.length)];
+          // Randomly select an animal or bird from the animalsAndBirds array
+
     const randomAnimalOrBird =
       animalsAndBirds[Math.floor(Math.random() * animalsAndBirds.length)];
+          // Combine the selected adjective and animal/bird name to form a random name
+
     const randomName = randomAdjective + randomAnimalOrBird;
+        // Save the generated random name to local storage under the key 'username'
+
     localStorage.setItem('username', randomName);
+        // Return the generated random name
+
     return randomName;
 };
 
