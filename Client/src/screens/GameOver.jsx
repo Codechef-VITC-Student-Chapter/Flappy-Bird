@@ -1,42 +1,48 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import bg1 from '/gameOver_bg.png';
-import bg2 from '/gameOver_bg2.png';
-import signboard from '/signboard.png';
+import bg1 from '../assets/gameOver_bg.png'; // Import background image for large screens
+import bg2 from '../assets/gameOver_bg2.png'; // Import background image for small screens
+import signboard from '../assets/signboard.png'; // Import image for the signboard
+
+
+// The GameOver component displays the game over screen with the user's score, best score, and buttons for actions
 
 const GameOver = ({ score, bestScore, username, resetGame}) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate();// Hook for programmatic navigation
+
+  // Function to submit the score to the API
 
   const submitScore = async (username, score) => {
     try {
-      const data = { username, score };
-      console.log("started fetch");
+      const data = { username, score };// Prepare data to send to the API
+      console.log("started fetch");// Log fetch initiation
       const response = await fetch('https://flappy-api.poseidon0z.com/api/gameusers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data),// Convert data to JSON format
       });
-      console.log("completed fetch");
+      console.log("completed fetch");// Log fetch completion
   
-      if (!response.ok) throw new Error('Failed to submit game data');
+      if (!response.ok) throw new Error('Failed to submit game data');// Check for errors
   
-      const result = await response.json();
-      console.log(result.message);
+      const result = await response.json();// Parse response data
+      console.log(result.message);// Log success message from API
     } catch (error) {
       console.error('Error submitting game data:', error);
     }
   };
 
+  // Effect hook to add and remove keydown event listener for spacebar
     useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === ' ' && !event.repeat) {
-        event.preventDefault();
-        resetGame();
+      if (event.key === ' ' && !event.repeat) {// Check if the spacebar key is pressed
+        event.preventDefault(); // Prevent the default action
+        resetGame();// Call the function to restart the game
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    
+    window.addEventListener('keydown', handleKeyDown); // Add event listener for keydown
+    // Clean up the event listener when the component is unmounted
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };

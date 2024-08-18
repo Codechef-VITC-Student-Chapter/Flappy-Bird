@@ -1,86 +1,98 @@
+/* Import Tailwind's base styles, component classes, and utility classes */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Define a custom font face for 'Post No Bills Colombo' */
 @font-face {
-  font-family: 'Post No Bills Colombo';
-  src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
+  font-family: 'Post No Bills Colombo'; /* The name used to refer to this font in CSS */
+  src: url('./PostNoBillsColombo-ExtraBold.woff') format('woff'); /* URL to the font file */
+  font-weight: 800; /* Font weight for this font (ExtraBold) */
+  font-style: normal; /* Font style (normal) */
 }
 
+/* Custom scrollbar styles for WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 12px;
-  margin: 4px;
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 12px; /* Height of the horizontal scrollbar */
+  margin: 4px; /* Margin around the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: #4D2E13;
-  border-radius: 10px;
+  background: #4D2E13; /* Background color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D8874F;
-  border-radius: 10px;
+  background: #D8874F; /* Background color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffa15f;
+  background: #ffa15f; /* Background color of the scrollbar thumb on hover */
 }
 
+/* Custom font class for 'Post No Bills Colombo' with bold weight */
 .font-postNoBills {
-  font-family: 'Post No Bills Colombo', sans-serif;
-  font-weight: 800;
+  font-family: 'Post No Bills Colombo', sans-serif; /* Uses the custom font with a fallback to sans-serif */
+  font-weight: 800; /* Bold weight for this font */
 }
 
+/* Custom font class for 'Inter' */
 .font-inter {
-  font-family: "Inter", sans-serif;
-  font-style: normal;
+  font-family: "Inter", sans-serif; /* Uses the Inter font with a fallback to sans-serif */
+  font-style: normal; /* Normal font style */
 }
 
+/* Custom styling for text with a stroke */
 .countdown-text {
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: #311F04;
+  -webkit-text-stroke-width: 3px; /* Width of the text stroke */
+  -webkit-text-stroke-color: #311F04; /* Color of the text stroke */
 }
 
+/* Background style for elements with the 'body' class */
 .body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("/leaderBoard_image_bg.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url("/leaderBoard_image_bg.png"); /* Linear gradient overlay with a background image */
 }
 
+/* Background style for elements with the 'out' class */
 .out {
-  background-image: url('/leaderBoard_tree_board.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url('/leaderBoard_tree_board.png'); /* Background image */
+  background-size: contain; /* Scale background image to fit within its container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent background image from repeating */
 }
 
+/* Animation for scrolling background */
 .bg-scroll {
-  animation: scrollBackground 120s linear infinite;
+  animation: scrollBackground 120s linear infinite; /* Apply the scrollBackground animation for 120 seconds, infinitely */
 }
 
+/* Keyframes for the scrollBackground animation */
 @keyframes scrollBackground {
   from {
-      background-position: 0 0;
+      background-position: 0 0; /* Starting position of the background */
   }
 
   to {
-      background-position: 1000% 0;
+      background-position: 1000% 0; /* Ending position of the background (scrolls horizontally) */
   }
 }
 
+/* Responsive styles for screens with a max width of 1024px */
 @media only screen and (max-width: 1024px) {
   .out {
-    background-image: url('/leaderBoard_tree_board_sm.png');
-    background-size: 100% auto;
-    background-position: center top;
-    background-repeat: no-repeat;
-    padding-top: 20%;
+    background-image: url('/leaderBoard_tree_board_sm.png'); /* Different background image for smaller screens */
+    background-size: 100% auto; /* Adjust background image size for smaller screens */
+    background-position: center top; /* Adjust background image position */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    padding-top: 20%; /* Add padding to the top of the element */
   }
 }
 
+/* Styling for long text to break and wrap properly */
 .name-span {
-  word-break: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  word-break: break-word; /* Break long words onto the next line */
+  overflow-wrap: break-word; /* Wrap text to avoid overflow */
+  hyphens: auto; /* Automatically hyphenate text where appropriate */
 }
