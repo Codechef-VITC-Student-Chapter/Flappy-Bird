@@ -1,0 +1,20 @@
+@keyframes scrollBackground {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 1000% 0;
+    }
+}
+
+.background-stuff {
+    background-image: url('../assets/playBackground.png');
+    background-repeat: repeat-x;
+    background-size: cover;
+    position: relative;
+}
+
+.bg-scroll {
+    animation: scrollBackground 120s linear infinite;
+}
